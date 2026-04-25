@@ -1,0 +1,1102 @@
+openapi: 3.2.0
+
+info:
+  title: '🏛️ TDW - IPanel REST api'
+  description: '[UPM] TDW REST Panel Informativo'
+  license:
+    name: MIT
+    url: 'https://opensource.org/licenses/MIT'
+  version: 1.1.0
+  contact:
+    name: Máster Universitario en Ingeniería Web
+    url: 'https://miw.etsisi.upm.es/'
+    email: miw.etsisi@upm.es
+
+servers:
+  - url: '/api/v1'
+    description: TDW Production server (uses live data)
+
+tags:
+  - name: '🔐 Login'
+    description: User login
+  - name: '👥 Users'
+    description: User management
+  - name: '🧑‍✈️ Operators'
+    description: Operator management
+  - name: '🎯 Spots'
+    description: Spot management
+
+paths:
+  '/access_token':
+    servers:
+      - 'url': '/'
+    options:
+      tags:
+        - '🔐 Login'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_options_login
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    post:
+      tags:
+        - '🔐 Login'
+      summary: Returns api token
+      description: Returns api authorization token (JWT).
+      operationId: api_post_login
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequestBody'
+      responses:
+        '200':
+          description: _User access token_
+          headers:
+            Authorization:
+              $ref: '#/components/headers/Authorization'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token_type:
+                    type: string
+                    default: Bearer
+                  expires_in:
+                    type: integer
+                    default: 14400
+                    description: Max lifetime in seconds
+                  access_token:
+                    description: JSON web token
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    token_type: Bearer
+                    expires_in: 14400
+                    access_token: <JSON web token>
+          links:
+            AllEndPoints:
+              operationId: '*'
+              parameters:
+                token: $response.body#/token
+              description: 'The `access_token` value returned in the response must be appended to the `Authorization: Bearer ` header in all operations.'
+        '400':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    default: invalid_grant
+                  error_description:
+                    type: string
+              example:
+                { "error": "invalid_grant", "error_description": "The user’s password is invalid or expired or user is invalid" }
+  '/users':
+    get:
+      tags:
+        - '👥 Users'
+      summary: Retrieves the collection of User resources.
+      description: Returns all users from the system that the user has access to.
+      operationId: api_users_cget
+      security:
+        - MiWApiSecurity: [ publico, gestor ]
+      responses:
+        '200':
+          description: Object containing an array of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    description: Users array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    post:
+      tags:
+        - '👥 Users'
+      summary: Creates a User resource.
+      description: Creates a new PUBLIC user
+      operationId: api_users_post
+      requestBody:
+        $ref: '#/components/requestBodies/UserRequestBody'
+      responses:
+        '201':
+          description: '`CREATED`: (public) user created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+          links:
+            GetUserByUserId:  # GET /users/{userId}
+              operationId: api_users_get
+              parameters:
+                userId: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `userId` parameter in `GET /users/{userId}`.
+            PutUserByUserId:  # PUT /users/{userId}
+              operationId: api_users_put
+              parameters:
+                userId: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `userId` parameter in `PUT /users/{userId}`.
+            DeleteUserByUserId:  # DELETE /users/{userId}
+              operationId: api_users_delete
+              parameters:
+                userId: '$response.body#/id'
+              description: >
+                The `id` value returned in the response can be used as
+                the `userId` parameter in `DELETE /users/{userId}`.
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '422':
+          $ref: '#/components/responses/Response_422'
+    options:
+      tags:
+        - '👥 Users'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_users_coptions
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+
+  '/users/{userId}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    get:
+      tags:
+        - '👥 Users'
+      summary: Retrieves a User resource based on a single ID.
+      description: Returns the user identified by `userId`.
+      operationId: api_users_get
+      security:
+        - MiWApiSecurity: [ publico, gestor ]
+      responses:
+        '200':
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '👥 Users'
+      summary: Updates the User resource.
+      description: |
+        Updates the user identified by `userId`.
+        - a `PUBLICO` user can only modify their own properties
+        - a `INACTIVO` or `PUBLICO` user cannot modify his role
+      operationId: api_users_put
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      security:
+        - MiWApiSecurity: [ publico, gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateUserRequestBody'
+      responses:
+        '209':
+          description: '`CONTENT RETURNED`: user previously existed and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '428':
+          $ref: '#/components/responses/Response_428'
+    delete:
+      tags:
+        - '👥 Users'
+      summary: Removes the User resource.
+      description: Deletes the user identified by `userId`.
+      operationId: api_users_delete
+      security:
+        - MiWApiSecurity: [ gestor ]
+      responses:
+        '204':
+          description: '`NO CONTENT`: User deleted &lt;Response body is empty&gt;'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    options:
+      tags:
+        - '👥 Users'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_users_options_id
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+
+  '/users/email/{useremail}':
+    get:
+      tags:
+        - '👥 Users'
+      summary: Determines if a user with _useremail_ exists
+      description: Returns status code 204 if `useremail` exists.
+      operationId: api_get_user_name
+      parameters:
+        - $ref: '#/components/parameters/useremail'
+      responses:
+        '204':
+          description: '`NO CONTENT`: User email exists &lt;Response body is empty&gt;'
+        '404':
+          $ref: '#/components/responses/Response_404'
+
+  /operators:
+    get:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Retrieves the collection of Operator resources.
+      description: Returns all operators from the system.
+      operationId: api_operator_cget
+      parameters:
+        - $ref: '#/components/parameters/elementTextParam'
+        - $ref: '#/components/parameters/orderParam'
+        - $ref: '#/components/parameters/orderingParam'
+      responses:
+        '200':
+          description: Object containing an array of Operators
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  operadores:
+                    description: Operator array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Operator'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    options:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_operators_coptions
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    post:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Creates a Operator resource.
+      description: Creates a new Operator
+      operationId: createOperator
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/OperatorRequestBody'
+      responses:
+        '201':
+          description: '`CREATED`: Operator created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operator'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '422':
+          $ref: '#/components/responses/Response_422'
+
+  /operators/{operatorId}:
+    parameters:
+      - $ref: '#/components/parameters/operatorId'
+    options:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_operators_options_id
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    get:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Retrieves a Operator resource based on a single ID.
+      description: Returns the Operator identified by `operatorId`.
+      operationId: readOperator
+      responses:
+        '200':
+          description: Operator
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operator'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    delete:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Removes the Operator resource.
+      description: Deletes the Operator identified by `operatorId`.
+      operationId: deleteOperator
+      security:
+        - MiWApiSecurity: [ gestor ]
+      responses:
+        '204':
+          description: '`NO CONTENT`: Operator deleted &lt;Response body is empty&gt;'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Updates the Operator resource.
+      description: Updates the Operator identified by `operatorId`.
+      operationId: updateOperator
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/OperatorRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '209':
+          description: '`CONTENT RETURNED`: Operator existed previously and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operator'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '428':
+          $ref: '#/components/responses/Response_428'
+
+  '/operators/{criterion}/{operatorName}':
+    get:
+      tags:
+        - '🧑‍✈️ Operators'
+      summary: Determines if operatorName exists
+      description: Returns status code 204 if `operatorName` exists.
+      operationId: existsOperator
+      parameters:
+        - $ref: '#/components/parameters/operatorSearchCriteria'
+        - $ref: '#/components/parameters/operatorName'
+      responses:
+        '204':
+          description: '`NO CONTENT`: operatorName exists &lt;Response body is empty&gt;'
+        '404':
+          $ref: '#/components/responses/Response_404'
+  /spots:
+    get:
+      tags:
+        - '🎯 Spots'
+      summary: Retrieves the collection of Spot resources.
+      description: Returns all spots from the system.
+      operationId: api_spot_cget
+      parameters:
+        - $ref: '#/components/parameters/elementTextParam'
+        - $ref: '#/components/parameters/orderParam'
+        - $ref: '#/components/parameters/orderingParam'
+      responses:
+        '200':
+          description: Object containing an array of Spots
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  puntos:
+                    description: Spot array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Spot'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    options:
+      tags:
+        - '🎯 Spots'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_operators_coptions
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    post:
+      tags:
+        - '🎯 Spots'
+      summary: Creates a Spot resource.
+      description: Creates a new Spot
+      operationId: createSpot
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/SpotRequestBody'
+      responses:
+        '201':
+          description: '`CREATED`: Spot created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spot'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '422':
+          $ref: '#/components/responses/Response_422'
+
+  /spots/{spotId}:
+    parameters:
+      - $ref: '#/components/parameters/spotId'
+    options:
+      tags:
+        - '🎯 Spots'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_spots_options_id
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    get:
+      tags:
+        - '🎯 Spots'
+      summary: Retrieves a Spot resource based on a single ID.
+      description: Returns the Spot identified by `spotId`.
+      operationId: readSpot
+      responses:
+        '200':
+          description: Spot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spot'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    delete:
+      tags:
+        - '🎯 Spots'
+      summary: Removes the Spot resource.
+      description: Deletes the Spot identified by `spotId`.
+      operationId: deleteSpot
+      security:
+        - MiWApiSecurity: [ gestor ]
+      responses:
+        '204':
+          description: '`NO CONTENT`: Spot deleted &lt;Response body is empty&gt;'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '🎯 Spots'
+      summary: Updates the Spot resource.
+      description: Updates the Spot identified by `spotId`.
+      operationId: updateSpot
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/SpotRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '209':
+          description: '`CONTENT RETURNED`: Spot existed previously and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spot'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        # '403':
+        #   $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '428':
+          $ref: '#/components/responses/Response_428'
+  '/spots/name/{spotName}':
+    get:
+      tags:
+        - '🎯 Spots'
+      summary: Determines if spotName exists
+      description: Returns status code 204 if `spotName` exists.
+      operationId: existsSpot
+      parameters:
+        - $ref: '#/components/parameters/spotName'
+      responses:
+        '204':
+          description: '`NO CONTENT`: spotName exists &lt;Response body is empty&gt;'
+        '404':
+          $ref: '#/components/responses/Response_404'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          description: User Id
+          type: integer
+          format: int64
+          readOnly: true
+        email:
+          description: User email
+          type: string
+          format: email
+        role:
+          description: User role
+          type: string
+          # default: PUBLICO
+          enum:
+            - INACTIVO
+            - PUBLICO
+            - GESTOR
+        # _links:
+        #   description: link relations
+        #   type: object
+        #   properties:
+        #     parent:
+        #       type: object
+        #       properties:
+        #         href:
+        #           type: string
+        #           format: url
+        #     self:
+        #       type: object
+        #       properties:
+        #         href:
+        #           type: string
+        #           format: url
+      examples:
+        - user:
+            id: 1508
+            email: miw.etsisi@upm.es
+            role: PUBLICO
+            # _links:
+            #   parent:
+            #     href: /api/v1/users
+            #   self:
+            #     href: /api/v1/users/1508
+      description: ''
+      x-examples:
+        example-1:
+          user:
+            id: 1508
+            email: miw.etsisi@upm.es
+            role: PUBLICO
+            # _links:
+            #   parent:
+            #     href: /api/v1/users
+            #   self:
+            #     href: /api/v1/users/1508
+    Operator:
+      type: object
+      properties:
+        id:
+          description: Operator Id
+          type: integer
+          format: int64
+          readOnly: true
+        nombre:
+          description: Operator name
+          type: string
+          maxLength: 80
+        siglas:
+          description: Operator acronym
+          type: string
+          maxLength: 6
+        color:
+          description: Operator color
+          type: string
+          maxLength: 20
+        urlIcono:
+          description: Operator icon url
+          type: string
+          maxLength: 2047
+          format: url
+        operaciones:
+          description: array with the operation IDs
+          type: array
+          items:
+            type: string
+            format: ulid
+      required: [ id, nombre, siglas ]
+      example:
+        operador:
+          id: 1
+          nombre: "MiW - ETSISI - UPM"
+          siglas: "MiWUPM"
+          color: "azul"
+          urlIcono: "https://miw.etsisi.upm.es/wp-content/uploads/2021/04/miw.png"
+          operaciones: [ "01KPY47KQDTNHW9N5QJ0PGP88Y", "01KPZXPWK7XT4VBCHAQ6GYKMRS" ]
+    Spot:
+      type: object
+      properties:
+        puntoId:
+          description: Spot Id
+          type: integer
+          format: int64
+          readOnly: true
+        codigo:
+          description: Spot name
+          type: string
+          maxLength: 80
+        tipo:
+          description: Spot type
+          type: string
+          maxLength: 6
+      required: [ codigo, tipo ]
+      example:
+        punto:
+          PuntoId: 2023
+          tipo: "PUERTA"
+          codigo: "P2023"
+
+    Message:
+      type: object
+      description: HTTP response message
+      properties:
+        code:
+          description: Response code
+          type: integer
+          format: int64
+        message:
+          description: Response message
+          type: string
+
+  responses:
+    Response_Options:
+      description: '`NO CONTENT`: `ALLOW` header &lt;Response body is empty&gt;'
+      headers:
+        Allow:
+          $ref: '#/components/headers/Allow'
+    Response_400:
+      description: '`BAD REQUEST`: User e-mail already exists, or role does not exist'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-400:
+              $ref: '#/components/examples/response-400'
+    Response_401:
+      description: '`UNAUTHORIZED`: invalid Authorization header'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-401:
+              $ref: '#/components/examples/response-401'
+    Response_403:
+      description: '`FORBIDDEN`: You don''t have permission to access'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-403:
+              $ref: '#/components/examples/response-403'
+    Response_404:
+      description: '`NOT FOUND`: resource not found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-404:
+              $ref: '#/components/examples/response-404'
+    Response_406:
+      description: '`NOT ACCEPTABLE`: Requested target resource not found'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-406:
+              $ref: '#/components/examples/response-406'
+    Response_428:
+      description: '`PRECONDITION REQUIRED`: This request is required to be conditional; try using `If-Match`.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-428:
+              $ref: '#/components/examples/response-428'
+    Response_422:
+      description: '`UNPROCESSABLE ENTITY`: User e-mail or password is left out'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          examples:
+            response-422:
+              $ref: '#/components/examples/response-422'
+
+  requestBodies:
+    UserRequestBody:
+      description: '`User` data'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                description: User email
+                type: string
+                format: email
+              password:
+                description: User password
+                type: string
+                format: password
+            required: [ 'email', 'password' ]
+            examples:
+                - email: User_email@example.com
+                  password: User_password
+    UpdateUserRequestBody:
+      description: User data that you want to modify
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                description: new User email
+                type: string
+                format: email
+              password:
+                description: new User password
+                type: string
+                format: password
+              role:
+                description: new User role
+                type: string
+                enum:
+                  - INACTIVO
+                  - PUBLICO
+                  - GESTOR
+            examples:
+              - email: miw.etsisi@upm.es
+                password: MiW_User_password
+                role: PUBLICO
+    LoginRequestBody:
+      description: Registered **username** and **password**
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              username:
+                description: User email
+                type: string
+              password:
+                description: User password
+                type: string
+                format: password
+              scope:
+                description: Requested scopes
+                type: string
+                # default: publico
+                enum:
+                  - publico
+                  - publico+gestor
+            required: [ 'username', 'password' ]
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                description: User email
+                type: string
+              password:
+                description: User password
+                type: string
+                format: password
+              scope:
+                description: Requested scopes
+                type: string
+                default: publico
+                enum:
+                  - publico
+                  - publico+gestor
+            required: [ 'username', 'password']
+    OperatorRequestBody:
+      description: '`Operator` data'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              nombre:
+                type: string
+                maxLength: 80
+              siglas:
+                type: string
+                maxLength: 6
+              color:
+                type: string
+                maxLength: 20
+              urlIcono:
+                type: string
+                maxLength: 2047
+                format: url
+            required: [ 'nombre', 'siglas' ]
+    SpotRequestBody:
+      description: '`Spot` data'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              codigo:
+                type: string
+                maxLength: 10
+              tipo:
+                type: string
+                maxLength: 6
+            required: [ 'codigo', 'tipo' ]
+
+  parameters:
+    userId:
+      name: userId
+      in: path
+      description: ID of user
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        pattern: ^\d+$
+    useremail:
+      name: useremail
+      in: path
+      description: User email
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9()áéíóúÁÉÍÓÚñÑ@_ %$\.+-]*$'
+    elementTextParam:
+      name: name
+      in: query
+      description: Elements containing the text
+      required: false
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9()áéíóúÁÉÍÓÚñÑ %$\.+-<>]*$'
+    orderParam:
+      name: order
+      in: query
+      description: '`id` | `nombre`'
+      required: false
+      allowEmptyValue: false
+      schema:
+        type: string
+        enum:
+          - id
+          - nombre
+    orderingParam:
+      name: ordering
+      in: query
+      description: '`ASC` | `DESC`'
+      required: false
+      allowEmptyValue: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+    ifMatchParam:
+      name: If-Match
+      in: header
+      description: "ETag value of the resource you are trying to update"
+      required: true
+      schema:
+        type: string
+        pattern: "[0-9a-f]*"
+    operatorId:
+      name: operatorId
+      in: path
+      description: Operator ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        pattern: ^\d+$
+    operatorName:
+      name: operatorName
+      in: path
+      description: Operator name
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9()áéíóúÁÉÍÓÚñÑ %$\.+-]*$'
+    operatorSearchCriteria:
+      name: criterion
+      in: path
+      description: |-
+        Set the search criteria:
+        <li><b>name</b>: Search by name
+        <li><b>acronym</b>: search by acronym
+
+      required: true
+      schema:
+        type: string
+        enum:
+          - name
+          - acronym
+    spotId:
+      name: spotId
+      in: path
+      description: Spot ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+        minimum: 1
+        pattern: ^\d+$
+    spotName:
+      name: spotName
+      in: path
+      description: Spot name
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9()áéíóúÁÉÍÓÚñÑ %$\.+-]*$'
+
+  headers:
+    Authorization:
+      description: Authorization header with access token
+      schema:
+        type: string
+        example:
+          "Authorization: Bearer <JWT>"
+    ETag:
+      description: Entity Tag (unique identifier provided for cache validation)
+      schema:
+        type: string
+        pattern: "[0-9a-f]*"
+        example:
+          "ETag: d6f3191f5c8f0e3fced7f9cbd1a753d9"
+    Location:
+      description: '`URI` of the new resource'
+      schema:
+        type: string
+        format: url
+        example:
+          "Location: /api/v1/products/2023"
+    Allow:
+      description: List of HTTP supported methods
+      schema:
+        type: string
+        example:
+          "Allow: OPTIONS, GET, HEAD, POST"
+
+  examples:
+    response-400:
+      value:
+        code: 400
+        message: 'BAD REQUEST: user e-mail already exists'
+    response-401:
+      value:
+        code: 401
+        message: 'UNAUTHORIZED: invalid Authorization header'
+    response-403:
+      value:
+        code: 403
+        message: "FORBIDDEN: You don't have permission to access"
+    response-404:
+      value:
+        code: 404
+        message: "NOT FOUND: Resource not found (or you don't have permission to access)"
+    response-406:
+      value:
+        code: 406
+        message: 'NOT ACCEPTABLE: Requested resource not found'
+    response-428:
+      value:
+        code: 428
+        message: 'PRECONDITION REQUIRED: This request is required to be conditional; try using `If-Match`.'
+    response-422:
+      value:
+        code: 422
+        message: 'UNPROCESSABLE ENTITY: name, e-mail or password is left out'
+
+  securitySchemes:
+    MiWApiSecurity:
+      type: oauth2
+      description: 'This API uses OAuth2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)'
+      bearerFormat: JWT
+      flows:
+        password:
+          tokenUrl: /access_token
+          scopes:
+            publico: 'Permissions: (read) [ User, ... ]'
+            gestor: 'can also: (create, read, update, delete) [ User, ... ]'

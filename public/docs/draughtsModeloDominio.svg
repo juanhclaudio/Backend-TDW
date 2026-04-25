@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     data-diagram-type="CLASS" height="468px" preserveAspectRatio="none"
+     style="width:703px;height:468px;background:#FFFFFF;" version="1.1" viewBox="0 0 703 468" width="703px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class Punto-->
+        <g class="entity" data-entity="Punto" data-source-line="1" data-uid="ent0002" id="entity_Punto">
+            <rect fill="#F1F1F1" height="103.8633" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;"
+                  width="195.3604" x="152.5" y="338.5"/>
+            <ellipse cx="227.6372" cy="354.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"/>
+            <path d="M230.4028,350.375 Q230.5591,350.1563 230.7466,350.0469 Q230.9341,349.9375 231.1528,349.9375 Q231.5278,349.9375 231.7622,350.2031 Q231.9966,350.4531 231.9966,351.0625 L231.9966,352.5156 Q231.9966,353.125 231.7622,353.3906 Q231.5278,353.6563 231.1528,353.6563 Q230.8091,353.6563 230.606,353.4531 Q230.4028,353.2656 230.2935,352.75 Q230.2466,352.3906 230.0591,352.2031 Q229.731,351.8281 229.1216,351.6094 Q228.5122,351.3906 227.8872,351.3906 Q227.1216,351.3906 226.481,351.7188 Q225.856,352.0469 225.356,352.7969 Q224.8716,353.5469 224.8716,354.5781 L224.8716,355.6719 Q224.8716,356.9063 225.7622,357.7344 Q226.6528,358.5469 228.2466,358.5469 Q229.1841,358.5469 229.8403,358.2969 Q230.231,358.1406 230.6528,357.7031 Q230.9185,357.4375 231.0591,357.3594 Q231.2153,357.2813 231.4185,357.2813 Q231.7466,357.2813 231.9966,357.5469 Q232.2622,357.7969 232.2622,358.1406 Q232.2622,358.4844 231.9185,358.8906 Q231.4185,359.4688 230.6216,359.7969 Q229.5435,360.25 228.2466,360.25 Q226.731,360.25 225.5278,359.625 Q224.5435,359.125 223.856,358.0625 Q223.1685,356.9844 223.1685,355.7031 L223.1685,354.5469 Q223.1685,353.2188 223.7778,352.0781 Q224.4028,350.9219 225.4966,350.3125 Q226.5903,349.6875 227.8247,349.6875 Q228.5591,349.6875 229.1997,349.8594 Q229.856,350.0156 230.4028,350.375 Z "
+                  fill="#000000"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36.5859"
+                  x="248.1372" y="360.2969">Punto
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="153.5" x2="346.8604" y1="370.5" y2="370.5"/>
+            <ellipse cx="163.5" cy="385.3105" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98.0752"
+                  x="172.5" y="389.6074">puntoId: Integer
+            </text>
+            <ellipse cx="163.5" cy="403.9316" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="169.3604"
+                  x="172.5" y="408.2285">tipo: Enum [PUERTA | VIA]
+            </text>
+            <ellipse cx="163.5" cy="422.5527" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85.6064"
+                  x="172.5" y="426.8496">codigo: String
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="153.5" x2="346.8604" y1="434.3633" y2="434.3633"/>
+        </g><!--class Operador-->
+        <g class="entity" data-entity="Operador" data-source-line="7" data-uid="ent0003" id="entity_Operador">
+            <rect fill="#F1F1F1" height="141.1055" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;"
+                  width="145.082" x="382.5" y="320"/>
+            <ellipse cx="421.7719" cy="336" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"/>
+            <path d="M424.5375,331.875 Q424.6938,331.6563 424.8813,331.5469 Q425.0688,331.4375 425.2875,331.4375 Q425.6625,331.4375 425.8969,331.7031 Q426.1313,331.9531 426.1313,332.5625 L426.1313,334.0156 Q426.1313,334.625 425.8969,334.8906 Q425.6625,335.1563 425.2875,335.1563 Q424.9438,335.1563 424.7406,334.9531 Q424.5375,334.7656 424.4281,334.25 Q424.3813,333.8906 424.1938,333.7031 Q423.8656,333.3281 423.2563,333.1094 Q422.6469,332.8906 422.0219,332.8906 Q421.2563,332.8906 420.6156,333.2188 Q419.9906,333.5469 419.4906,334.2969 Q419.0063,335.0469 419.0063,336.0781 L419.0063,337.1719 Q419.0063,338.4063 419.8969,339.2344 Q420.7875,340.0469 422.3813,340.0469 Q423.3188,340.0469 423.975,339.7969 Q424.3656,339.6406 424.7875,339.2031 Q425.0531,338.9375 425.1938,338.8594 Q425.35,338.7813 425.5531,338.7813 Q425.8813,338.7813 426.1313,339.0469 Q426.3969,339.2969 426.3969,339.6406 Q426.3969,339.9844 426.0531,340.3906 Q425.5531,340.9688 424.7563,341.2969 Q423.6781,341.75 422.3813,341.75 Q420.8656,341.75 419.6625,341.125 Q418.6781,340.625 417.9906,339.5625 Q417.3031,338.4844 417.3031,337.2031 L417.3031,336.0469 Q417.3031,334.7188 417.9125,333.5781 Q418.5375,332.4219 419.6313,331.8125 Q420.725,331.1875 421.9594,331.1875 Q422.6938,331.1875 423.3344,331.3594 Q423.9906,331.5156 424.5375,331.875 Z "
+                  fill="#000000"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.1445"
+                  x="441.1656" y="341.7969">Operador
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="383.5" x2="526.582" y1="352" y2="352"/>
+            <ellipse cx="393.5" cy="366.8105" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119.082"
+                  x="402.5" y="371.1074">operadorId: Integer
+            </text>
+            <ellipse cx="393.5" cy="385.4316" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91.8203"
+                  x="402.5" y="389.7285">nombre: String
+            </text>
+            <ellipse cx="393.5" cy="404.0527" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80.1445"
+                  x="402.5" y="408.3496">siglas: String
+            </text>
+            <ellipse cx="393.5" cy="422.6738" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74.6963"
+                  x="402.5" y="426.9707">color: String
+            </text>
+            <ellipse cx="393.5" cy="441.2949" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94.1582"
+                  x="402.5" y="445.5918">urlIcono: String
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="383.5" x2="526.582" y1="453.1055" y2="453.1055"/>
+        </g><!--class Operacion-->
+        <g class="entity" data-entity="Operacion" data-source-line="15" data-uid="ent0004" id="entity_Operacion">
+            <rect fill="#F1F1F1" height="252.832" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;"
+                  width="689.8926" x="7" y="7"/>
+            <ellipse cx="315.3999" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1;"/>
+            <path d="M318.1655,18.875 Q318.3218,18.6563 318.5093,18.5469 Q318.6968,18.4375 318.9155,18.4375 Q319.2905,18.4375 319.5249,18.7031 Q319.7593,18.9531 319.7593,19.5625 L319.7593,21.0156 Q319.7593,21.625 319.5249,21.8906 Q319.2905,22.1563 318.9155,22.1563 Q318.5718,22.1563 318.3687,21.9531 Q318.1655,21.7656 318.0562,21.25 Q318.0093,20.8906 317.8218,20.7031 Q317.4937,20.3281 316.8843,20.1094 Q316.2749,19.8906 315.6499,19.8906 Q314.8843,19.8906 314.2437,20.2188 Q313.6187,20.5469 313.1187,21.2969 Q312.6343,22.0469 312.6343,23.0781 L312.6343,24.1719 Q312.6343,25.4063 313.5249,26.2344 Q314.4155,27.0469 316.0093,27.0469 Q316.9468,27.0469 317.603,26.7969 Q317.9937,26.6406 318.4155,26.2031 Q318.6812,25.9375 318.8218,25.8594 Q318.978,25.7813 319.1812,25.7813 Q319.5093,25.7813 319.7593,26.0469 Q320.0249,26.2969 320.0249,26.6406 Q320.0249,26.9844 319.6812,27.3906 Q319.1812,27.9688 318.3843,28.2969 Q317.3062,28.75 316.0093,28.75 Q314.4937,28.75 313.2905,28.125 Q312.3062,27.625 311.6187,26.5625 Q310.9312,25.4844 310.9312,24.2031 L310.9312,23.0469 Q310.9312,21.7188 311.5405,20.5781 Q312.1655,19.4219 313.2593,18.8125 Q314.353,18.1875 315.5874,18.1875 Q316.3218,18.1875 316.9624,18.3594 Q317.6187,18.5156 318.1655,18.875 Z "
+                  fill="#000000"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64.5928"
+                  x="335.8999" y="28.7969">Operacion
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="695.8926" y1="39" y2="39"/>
+            <ellipse cx="18" cy="53.8105" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="115.165"
+                  x="27" y="58.1074">operacionID: ULID
+            </text>
+            <ellipse cx="18" cy="72.4316" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="175.5811"
+                  x="27" y="76.7285">tipo: Enum [VUELO | TREN]
+            </text>
+            <ellipse cx="18" cy="91.0527" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="85.6064"
+                  x="27" y="95.3496">codigo: String
+            </text>
+            <ellipse cx="18" cy="109.6738" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="226.9668"
+                  x="27" y="113.9707">sentido: Enum [SALIDA | LLEGADA]
+            </text>
+            <ellipse cx="18" cy="128.2949" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83.2686"
+                  x="27" y="132.5918">origen: String
+            </text>
+            <ellipse cx="18" cy="146.916" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89.4961"
+                  x="27" y="151.2129">destino: String
+            </text>
+            <ellipse cx="18" cy="165.5371" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="173.5234"
+                  x="27" y="169.834">horaProgramada: DateTime
+            </text>
+            <ellipse cx="18" cy="184.1582" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154.8408"
+                  x="27" y="188.4551">horaEstimada: DateTime
+            </text>
+            <ellipse cx="18" cy="202.7793" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="663.8926"
+                  x="27" y="207.0762">estado: Enum [PROGRAMADO | EMBARCANDO | RETRASADO | CANCELADO | EN_RUTA | LLEGADO]
+            </text>
+            <ellipse cx="18" cy="221.4004" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="71.6064"
+                  x="27" y="225.6973">operadorId:
+            </text>
+            <ellipse cx="18" cy="240.0215" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50.5996"
+                  x="27" y="244.3184">puntoId:
+            </text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="695.8926" y1="251.832" y2="251.832"/>
+        </g><!--link Operacion to Punto-->
+        <g class="link" data-entity-1="Operacion" data-entity-2="Punto" data-source-line="29" data-uid="lnk5"
+           id="link_Operacion_Punto">
+            <path codeLine="29" d="M299.5206,265.7004 C288.4506,293.3604 281.7971,309.9886 272.7271,332.6786"
+                  fill="none" id="Operacion-Punto" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="301.75,260.13,294.6923,266.9994,299.8922,264.772,302.1196,269.9719,301.75,260.13"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="270.5,338.25,277.5549,331.3777,272.3559,333.6072,270.1264,328.4082,270.5,338.25"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5.0591"
+                  x="293.7052" y="281.9838">*
+            </text>
+        </g><!--link Operacion to Operador-->
+        <g class="link" data-entity-1="Operacion" data-entity-2="Operador" data-source-line="30" data-uid="lnk6"
+           id="link_Operacion_Operador">
+            <path codeLine="30" d="M404.9957,265.6939 C413.2657,286.1839 417.0835,295.6164 424.5535,314.1164"
+                  fill="none" id="Operacion-Operador" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="402.75,260.13,402.4092,269.973,404.6214,264.7666,409.8278,266.9788,402.75,260.13"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="426.8,319.68,427.1393,309.837,424.9279,315.0437,419.7212,312.8323,426.8,319.68"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5.0591"
+                  x="400.5443" y="281.9838">*
+            </text>
+        </g><!--SRC=[TLB1QiCm3BtdAqoFA_s1C0PUOueXJOAJz3BAy6pZ6H8hE0uxRFltEMdNf5jxyzEJdlGaYuRtFIe6wm5zHclKZIygOqIjLrgv4FAcWnWHExJefQW9gp3wGWUAZu4J88qEREcTiJhwZY8n2UQTSbo2cpJX3AvbBRHlJbrArwWtEjGk0W8QS0iyk8OAiFVQ2GDsxZSYciIeJcdonyIX9caUF5ICP3TCX4cKzKPUyaiSD4RJQKfsE9cCWpDQsKMDLBqtTgdo3euN3hJZBPSyHWdtgZAjEbCavFyZWWYV6nSitp6ynyauBTa_OxR5sGGOgHWkJqI8RKbwJifUMLtDi-R7w_qlBZnkRzxRwc657ZSIFkpcwVGTxf6_fur-0000]-->
+    </g>
+</svg>

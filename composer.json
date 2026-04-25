@@ -1,0 +1,90 @@
+{
+    "name": "tdw/ipanel",
+    "version": "1.0.1",
+    "type": "project",
+    "description": "UPM - TDW - Slim4: Panel Informativo",
+    "license": "MIT",
+    "homepage": "https://miw.etsisi.upm.es/",
+    "keywords": ["php", "slim4", "doctrine", "phpunit", "openapi"],
+    "authors": [
+        {
+            "name": "TDW UPM",
+            "homepage": "https://www.etsisi.upm.es/",
+            "email": "miw.etsisi@upm.es",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TDW\\IPanel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TDW\\Test\\IPanel\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.4",
+        "ext-fileinfo": "*",
+        "ext-openssl": "*",
+        "ext-pdo": "*",
+        "ext-sodium": "*",
+        "composer/composer": "^2.9",
+        "doctrine/dbal": "^4.4",
+        "doctrine/orm": "^3.6",
+        "lcobucci/clock": "^3.6",
+        "lcobucci/jwt": "^5.6",
+        "monolog/monolog": "^3.10",
+        "php-di/php-di": "^7.1",
+        "slim/http": "^1.4",
+        "slim/psr7": "^1.8",
+        "slim/slim": "^4.15",
+        "symfony/cache": "^8.0",
+        "symfony/uid": "^8.0",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.24",
+        "infection/infection": "^0.32",
+        "jetbrains/phpstorm-attributes": "^1.2",
+        "php-static-analysis/attributes": "^0.5",
+        "php-static-analysis/phpstan-extension": "^0.5",
+        "phpmetrics/phpmetrics": "v3.0.0rc8",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-beberlei-assert": "^2.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^13.1",
+        "roave/security-advisories": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "TDW\\IPanel\\Utility\\Install::preUpdateSchema",
+            "TDW\\IPanel\\Utility\\Install::postInstall"
+        ],
+        "start": "php -S 127.0.0.1:8000 -t public",
+        "test": "php -d xdebug.mode=coverage bin/phpunit --color=always",
+        "infection": "bin/infection --ansi --coverage=\"var/coverage\" --threads=20 --show-mutations=max",
+        "metrics": "bin/phpmetrics --junit=\"var/coverage/index.junit.xml\" --report-html=\"docs/PhpMetrics_report\" ./src",
+        "phpstan": "bin/phpstan --memory-limit=256M --ansi"
+    },
+    "scripts-descriptions": {
+        "start": "Run with built-in web server at http://127.0.0.1:8000/.",
+        "test": "Run PHPUnit tests",
+        "infection": "Runs the mutation testing.",
+        "metrics": "PhpMetrics provides metrics about PHP project and classes.",
+        "phpstan": "PHP Static Analysis"
+    }
+}

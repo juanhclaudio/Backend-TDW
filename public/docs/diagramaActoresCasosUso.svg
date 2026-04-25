@@ -1,0 +1,449 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     data-diagram-type="DESCRIPTION" height="1070px" preserveAspectRatio="none"
+     style="width:823px;height:1070px;background:#FFFFFF;" version="1.1" viewBox="0 0 823 1070" width="823px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster publico-->
+        <g class="cluster" data-entity="publico" data-source-line="7" data-uid="ent0004" id="cluster_publico">
+            <path d="M239.5,844.0137 L290.2725,844.0137 A3.75,3.75 0 0 1 292.7725,846.5137 L299.7725,868.6348 L617.5,868.6348 A2.5,2.5 0 0 1 620,871.1348 L620,1060.5137 A2.5,2.5 0 0 1 617.5,1063.0137 L239.5,1063.0137 A2.5,2.5 0 0 1 237,1060.5137 L237,846.5137 A2.5,2.5 0 0 1 239.5,844.0137"
+                  fill="none" style="stroke:#000000;stroke-width:1.5;"/>
+            <line style="stroke:#000000;stroke-width:1.5;" x1="237" x2="299.7725" y1="868.6348" y2="868.6348"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="49.7725" x="241" y="861.1211">publico
+            </text>
+        </g><!--cluster gestores-->
+        <g class="cluster" data-entity="gestores" data-source-line="14" data-uid="ent0009" id="cluster_gestores">
+            <path d="M85.5,6.0137 L144.8584,6.0137 A3.75,3.75 0 0 1 147.3584,8.5137 L154.3584,30.6348 L613.5,30.6348 A2.5,2.5 0 0 1 616,33.1348 L616,770.5137 A2.5,2.5 0 0 1 613.5,773.0137 L85.5,773.0137 A2.5,2.5 0 0 1 83,770.5137 L83,8.5137 A2.5,2.5 0 0 1 85.5,6.0137"
+                  fill="none" style="stroke:#000000;stroke-width:1.5;"/>
+            <line style="stroke:#000000;stroke-width:1.5;" x1="83" x2="154.3584" y1="30.6348" y2="30.6348"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="58.3584" x="87" y="23.1211">gestores
+            </text>
+        </g><!--entity Publico-->
+        <g class="entity" data-entity="Publico" data-source-line="8" data-uid="ent0005" id="entity_Publico">
+            <ellipse cx="275.9585" cy="908.0137" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M275.9585,916.0137 L275.9585,943.0137 M262.9585,924.0137 L288.9585,924.0137 M275.9585,943.0137 L262.9585,958.0137 M275.9585,943.0137 L288.9585,958.0137"
+                  fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="45.917"
+                  x="253" y="974.6211">Publico
+            </text>
+        </g><!--entity readOperacion-->
+        <g class="entity" data-entity="readOperacion" data-source-line="9" data-uid="ent0006" id="entity_readOperacion">
+            <ellipse cx="535.4875" cy="897.1808" fill="#F1F1F1" rx="68.4875" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92.6133"
+                  x="489.1808" y="902.9913">readOperacion
+            </text>
+        </g><!--entity readOperador-->
+        <g class="entity" data-entity="readOperador" data-source-line="10" data-uid="ent0007" id="entity_readOperador">
+            <ellipse cx="535.635" cy="964.1808" fill="#F1F1F1" rx="64.635" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87.165"
+                  x="492.0525" y="969.9913">readOperador
+            </text>
+        </g><!--entity readPunto-->
+        <g class="entity" data-entity="readPunto" data-source-line="11" data-uid="ent0008" id="entity_readPunto">
+            <ellipse cx="535.6837" cy="1031.1808" fill="#F1F1F1" rx="48.6837" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64.6064"
+                  x="503.3804" y="1036.9913">readPunto
+            </text>
+        </g><!--entity Gestor-->
+        <g class="entity" data-entity="Gestor" data-source-line="15" data-uid="ent0010" id="entity_Gestor">
+            <ellipse cx="120.0068" cy="401.0137" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M120.0068,409.0137 L120.0068,436.0137 M107.0068,417.0137 L133.0068,417.0137 M120.0068,436.0137 L107.0068,451.0137 M120.0068,436.0137 L133.0068,451.0137"
+                  fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42.0137"
+                  x="99" y="467.6211">Gestor
+            </text>
+        </g><!--entity login-->
+        <g class="entity" data-entity="login" data-source-line="16" data-uid="ent0011" id="entity_login">
+            <ellipse cx="275.9156" cy="741.1808" fill="#F1F1F1" rx="23.9156" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29.5791"
+                  x="261.126" y="746.9913">login
+            </text>
+        </g><!--entity createOperacion-->
+        <g class="entity" data-entity="createOperacion" data-source-line="17" data-uid="ent0012"
+           id="entity_createOperacion">
+            <ellipse cx="276.1087" cy="465.9354" fill="#F1F1F1" rx="72.6087" ry="16.9217"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103.5029"
+                  x="224.3572" y="471.746">createOperacion
+            </text>
+        </g><!--entity createOperador-->
+        <g class="entity" data-entity="createOperador" data-source-line="18" data-uid="ent0013"
+           id="entity_createOperador">
+            <ellipse cx="276.108" cy="604.0353" fill="#F1F1F1" rx="70.608" ry="16.5216"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98.0547"
+                  x="227.0806" y="609.8458">createOperador
+            </text>
+        </g><!--entity createPunto-->
+        <g class="entity" data-entity="createPunto" data-source-line="19" data-uid="ent0014" id="entity_createPunto">
+            <ellipse cx="275.8838" cy="398.1808" fill="#F1F1F1" rx="56.3838" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75.4961"
+                  x="238.1358" y="403.9913">createPunto
+            </text>
+        </g><!--entity updateOperacion-->
+        <g class="entity" data-entity="updateOperacion" data-source-line="20" data-uid="ent0015"
+           id="entity_updateOperacion">
+            <ellipse cx="276.0743" cy="535.2285" fill="#F1F1F1" rx="74.0743" ry="17.2149"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.4131"
+                  x="222.3677" y="541.0391">updateOperacion
+            </text>
+        </g><!--entity updateOperador-->
+        <g class="entity" data-entity="updateOperador" data-source-line="21" data-uid="ent0016"
+           id="entity_updateOperador">
+            <ellipse cx="276.0389" cy="672.8214" fill="#F1F1F1" rx="72.0389" ry="16.8078"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101.9648"
+                  x="225.0564" y="678.632">updateOperador
+            </text>
+        </g><!--entity updatePunto-->
+        <g class="entity" data-entity="updatePunto" data-source-line="22" data-uid="ent0017" id="entity_updatePunto">
+            <ellipse cx="276.1487" cy="331.1808" fill="#F1F1F1" rx="59.1487" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="79.4063"
+                  x="236.4456" y="336.9913">updatePunto
+            </text>
+        </g><!--entity deleteOperacion-->
+        <g class="entity" data-entity="deleteOperacion" data-source-line="23" data-uid="ent0018"
+           id="entity_deleteOperacion">
+            <ellipse cx="275.8246" cy="262.8786" fill="#F1F1F1" rx="72.3246" ry="16.8649"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102.7373"
+                  x="224.4559" y="268.6891">deleteOperacion
+            </text>
+        </g><!--entity deleteOperador-->
+        <g class="entity" data-entity="deleteOperador" data-source-line="24" data-uid="ent0019"
+           id="entity_deleteOperador">
+            <ellipse cx="275.8309" cy="193.9798" fill="#F1F1F1" rx="70.3309" ry="16.4662"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97.2891"
+                  x="227.1863" y="199.7904">deleteOperador
+            </text>
+        </g><!--entity deletePunto-->
+        <g class="entity" data-entity="deletePunto" data-source-line="25" data-uid="ent0020" id="entity_deletePunto">
+            <ellipse cx="275.8424" cy="126.1808" fill="#F1F1F1" rx="55.8424" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74.7305"
+                  x="238.4772" y="131.9913">deletePunto
+            </text>
+        </g><!--entity editOperacion-->
+        <g class="entity" data-entity="editOperacion" data-source-line="26" data-uid="ent0021"
+           id="entity_editOperacion">
+            <ellipse cx="535.635" cy="535.1808" fill="#F1F1F1" rx="64.635" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87.165"
+                  x="492.0525" y="540.9913">editOperacion
+            </text>
+        </g><!--entity editOperador-->
+        <g class="entity" data-entity="editOperador" data-source-line="27" data-uid="ent0022" id="entity_editOperador">
+            <ellipse cx="535.2825" cy="673.1808" fill="#F1F1F1" rx="60.7825" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="81.7168"
+                  x="494.4241" y="678.9913">editOperador
+            </text>
+        </g><!--entity editPunto-->
+        <g class="entity" data-entity="editPunto" data-source-line="28" data-uid="ent0023" id="entity_editPunto">
+            <ellipse cx="535.3312" cy="398.1808" fill="#F1F1F1" rx="44.8312" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59.1582"
+                  x="505.7521" y="403.9913">editPunto
+            </text>
+        </g><!--entity logout-->
+        <g class="entity" data-entity="logout" data-source-line="29" data-uid="ent0024" id="entity_logout">
+            <ellipse cx="275.9723" cy="59.1808" fill="#F1F1F1" rx="29.9723" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38.1445"
+                  x="256.9" y="64.9913">logout
+            </text>
+        </g><!--entity User-->
+        <g class="entity" data-entity="User" data-source-line="4" data-uid="ent0002" id="entity_User">
+            <ellipse cx="20.7793" cy="779.0137" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M20.7793,787.0137 L20.7793,814.0137 M7.7793,795.0137 L33.7793,795.0137 M20.7793,814.0137 L7.7793,829.0137 M20.7793,814.0137 L33.7793,829.0137"
+                  fill="none" style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29.5586"
+                  x="6" y="845.6211">User
+            </text>
+        </g><!--entity readIndex-->
+        <g class="entity" data-entity="readIndex" data-source-line="5" data-uid="ent0003" id="entity_readIndex">
+            <ellipse cx="770.0305" cy="810.1808" fill="#F1F1F1" rx="47.0305" ry="16.1671"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.2686"
+                  x="738.8962" y="815.9913">readIndex
+            </text>
+        </g><!--link User to readIndex-->
+        <g class="link" data-entity-1="User" data-entity-2="readIndex" data-source-line="32" data-uid="lnk25"
+           id="link_User_readIndex">
+            <path d="M36.14,810.0137 C55.02,810.0137 89.53,810.0137 119,810.0137 C119,810.0137 119,810.0137 536.5,810.0137 C601.08,810.0137 669.76,810.0137 716.68,810.0137"
+                  fill="none" id="User-to-readIndex" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="722.68,810.0137,713.68,806.0137,717.68,810.0137,713.68,814.0137,722.68,810.0137"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--reverse link User to Publico-->
+        <g class="link" data-entity-1="User" data-entity-2="Publico" data-source-line="34" data-uid="lnk26"
+           id="link_User_Publico">
+            <path d="M51.5098,828.0427 C60.0698,833.2227 55.85,830.5237 66,836.0137 C132.89,872.1937 214.25,910.7837 252.75,928.7337"
+                  fill="none" id="User-backto-Publico" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="none" points="36.11,818.7237,48.4035,833.176,54.6162,822.9095,36.11,818.7237"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Publico to readOperador-->
+        <g class="link" data-entity-1="Publico" data-entity-2="readOperador" data-source-line="35" data-uid="lnk27"
+           id="link_Publico_readOperador">
+            <path d="M299.4,941.1837 C338.19,944.9537 413.0981,952.2233 469.0781,957.6633" fill="none"
+                  id="Publico-to-readOperador" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="475.05,958.2437,466.4791,953.3919,470.0734,957.7601,465.7053,961.3544,475.05,958.2437"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Publico to readOperacion-->
+        <g class="link" data-entity-1="Publico" data-entity-2="readOperacion" data-source-line="36" data-uid="lnk28"
+           id="link_Publico_readOperacion">
+            <path d="M299.4,935.3637 C339.11,928.8837 416.9982,916.1792 473.0582,907.0392" fill="none"
+                  id="Publico-to-readOperacion" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="478.98,906.0737,469.4536,903.574,474.0452,906.8782,470.7409,911.4698,478.98,906.0737"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Publico to readPunto-->
+        <g class="link" data-entity-1="Publico" data-entity-2="readPunto" data-source-line="37" data-uid="lnk29"
+           id="link_Publico_readPunto">
+            <path d="M299.4,947.0137 C345.04,963.3237 443.3095,998.4357 496.3695,1017.3857" fill="none"
+                  id="Publico-to-readPunto" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="502.02,1019.4037,494.8897,1012.6097,497.3113,1017.722,492.199,1020.1436,502.02,1019.4037"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link readOperador to readIndex-->
+        <g class="link" data-entity-1="readOperador" data-entity-2="readIndex" data-source-line="39" data-uid="lnk30"
+           id="link_readOperador_readIndex">
+            <path d="M581.97,952.8137 C615.13,943.0437 659.87,926.3937 693,901.0137 C721.27,879.3537 742.7229,850.4134 755.8129,830.6834"
+                  fill="none" id="readOperador-to-readIndex"
+                  style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="759.13,825.6837,750.8212,830.9718,756.3658,829.8501,757.4875,835.3946,759.13,825.6837"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="897.042">&#171;include&#187;
+            </text>
+        </g><!--link readOperacion to readIndex-->
+        <g class="link" data-entity-1="readOperacion" data-entity-2="readIndex" data-source-line="40" data-uid="lnk31"
+           id="link_readOperacion_readIndex">
+            <path d="M588.42,886.8137 C619.46,879.8137 659.29,869.2037 693,855.0137 C712.64,846.7437 728.3455,837.4883 743.1855,827.7383"
+                  fill="none" id="readOperacion-to-readIndex"
+                  style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="748.2,824.4437,738.4818,826.0425,744.0212,827.1892,742.8746,832.7286,748.2,824.4437"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="851.042">&#171;include&#187;
+            </text>
+        </g><!--link readPunto to readIndex-->
+        <g class="link" data-entity-1="readPunto" data-entity-2="readIndex" data-source-line="41" data-uid="lnk32"
+           id="link_readPunto_readIndex">
+            <path d="M575.93,1021.9637 C610.99,1012.0237 661.47,992.7937 693,959.0137 C730.85,918.4737 752.6694,861.1879 762.2494,831.8179"
+                  fill="none" id="readPunto-to-readIndex" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="764.11,826.1137,757.5163,833.4296,762.5595,830.8672,765.1219,835.9104,764.11,826.1137"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="955.042">&#171;include&#187;
+            </text>
+        </g><!--reverse link User to Gestor-->
+        <g class="link" data-entity-1="User" data-entity-2="Gestor" data-source-line="43" data-uid="lnk33"
+           id="link_User_Gestor">
+            <path d="M36.674,752.8386 C55.304,680.2386 90.16,544.4137 108.79,471.7837" fill="none"
+                  id="User-backto-Gestor" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="none" points="32.2,770.2737,42.4858,754.3299,30.8623,751.3472,32.2,770.2737"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to login-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="login" data-source-line="44" data-uid="lnk34"
+           id="link_Gestor_login">
+            <path d="M122.64,471.9437 C127.05,530.2437 143.19,639.0937 202,707.0137 C215.18,722.2337 230.8787,729.3842 247.1287,734.2142"
+                  fill="none" id="Gestor-to-login" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="252.88,735.9237,245.3927,729.5253,248.0872,734.4991,243.1134,737.1937,252.88,735.9237"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to createOperacion-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="createOperacion" data-source-line="45" data-uid="lnk35"
+           id="link_Gestor_createOperacion">
+            <path d="M141.13,436.4537 C161.76,441.0137 188.8312,446.9898 216.8612,453.1798" fill="none"
+                  id="Gestor-to-createOperacion" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="222.72,454.4737,214.7943,448.627,217.8376,453.3955,213.0692,456.4388,222.72,454.4737"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to updateOperacion-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="updateOperacion" data-source-line="46" data-uid="lnk36"
+           id="link_Gestor_updateOperacion">
+            <path d="M141.19,451.4437 C156.93,465.9637 179.78,485.6837 202,500.0137 C213.69,507.5537 221.8175,511.968 234.0575,517.648"
+                  fill="none" id="Gestor-to-updateOperacion" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="239.5,520.1737,233.0199,512.7569,234.9646,518.069,229.6524,520.0136,239.5,520.1737"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to deleteOperacion-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="deleteOperacion" data-source-line="47" data-uid="lnk37"
+           id="link_Gestor_deleteOperacion">
+            <path d="M137.15,392.2237 C150.78,362.7737 172.75,323.3537 202,297.0137 C211.25,288.6837 217.4308,284.5331 228.6808,279.4031"
+                  fill="none" id="Gestor-to-deleteOperacion" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="234.14,276.9137,224.2916,277.0083,229.5907,278.9882,227.6108,284.2872,234.14,276.9137"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to createOperador-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="createOperador" data-source-line="48" data-uid="lnk38"
+           id="link_Gestor_createOperador">
+            <path d="M136.82,471.6737 C150.4,501.5837 172.47,541.9437 202,569.0137 C211.64,577.8437 218.4453,582.3844 230.1653,587.7544"
+                  fill="none" id="Gestor-to-createOperador" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="235.62,590.2537,229.1042,582.8683,231.0744,588.1709,225.7718,590.1412,235.62,590.2537"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to updateOperador-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="updateOperador" data-source-line="49" data-uid="lnk39"
+           id="link_Gestor_updateOperador">
+            <path d="M127.55,471.5437 C136.89,516.7937 158.03,590.7437 202,638.0137 C210.42,647.0737 216.2516,651.4777 227.4016,656.7277"
+                  fill="none" id="Gestor-to-updateOperador" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="232.83,659.2837,226.3914,651.8308,228.3064,657.1537,222.9835,659.0686,232.83,659.2837"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to deleteOperador-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="deleteOperador" data-source-line="50" data-uid="lnk40"
+           id="link_Gestor_deleteOperador">
+            <path d="M127.64,392.3737 C137.03,347.4437 158.19,274.4337 202,228.0137 C210.44,219.0637 216.2518,214.7453 227.4018,209.6553"
+                  fill="none" id="Gestor-to-deleteOperador" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="232.86,207.1637,223.0116,207.2624,228.3115,209.2401,226.3339,214.5399,232.86,207.1637"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to createPunto-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="createPunto" data-source-line="51" data-uid="lnk41"
+           id="link_Gestor_createPunto">
+            <path d="M141.13,427.5737 C163.8,422.5637 195.4613,415.5779 225.0213,409.0479" fill="none"
+                  id="Gestor-to-createPunto" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="230.88,407.7537,221.2291,405.7892,225.9977,408.8322,222.9547,413.6009,230.88,407.7537"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to updatePunto-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="updatePunto" data-source-line="52" data-uid="lnk42"
+           id="link_Gestor_updatePunto">
+            <path d="M141.09,412.4437 C156.79,397.8437 179.62,378.0937 202,364.0137 C214.24,356.3137 223.0787,351.7956 235.7887,346.3256"
+                  fill="none" id="Gestor-to-updatePunto" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="241.3,343.9537,231.4518,343.8373,236.7073,345.9302,234.6143,351.1857,241.3,343.9537"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to deletePunto-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="deletePunto" data-source-line="53" data-uid="lnk43"
+           id="link_Gestor_deletePunto">
+            <path d="M122.74,392.4937 C127.29,334.7937 143.6,227.0837 202,160.0137 C210.91,149.7837 218.014,144.7611 230.284,139.5711"
+                  fill="none" id="Gestor-to-deletePunto" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="235.81,137.2337,225.9627,137.0558,231.205,139.1815,229.0793,144.4238,235.81,137.2337"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link Gestor to logout-->
+        <g class="link" data-entity-1="Gestor" data-entity-2="logout" data-source-line="54" data-uid="lnk44"
+           id="link_Gestor_logout">
+            <path d="M125.78,392.4237 C136.11,312.7537 162.83,136.8537 202,92.0137 C213.89,78.3937 226.8069,71.9053 242.2769,67.0353"
+                  fill="none" id="Gestor-to-logout" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="248,65.2337,238.2142,64.1207,243.2307,66.735,240.6164,71.7516,248,65.2337"
+                     style="stroke:#181818;stroke-width:1;"/>
+        </g><!--link createOperacion to editOperacion-->
+        <g class="link" data-entity-1="createOperacion" data-entity-2="editOperacion" data-source-line="56"
+           data-uid="lnk45" id="link_createOperacion_editOperacion">
+            <path d="M324.53,478.7537 C372.19,491.5237 439.1643,509.4714 485.3143,521.8314" fill="none"
+                  id="createOperacion-to-editOperacion" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="491.11,523.3837,483.4512,517.1915,486.2802,522.0901,481.3816,524.9192,491.11,523.3837"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="491.042">&#171;include&#187;
+            </text>
+        </g><!--link updateOperacion to editOperacion-->
+        <g class="link" data-entity-1="updateOperacion" data-entity-2="editOperacion" data-source-line="57"
+           data-uid="lnk46" id="link_updateOperacion_editOperacion">
+            <path d="M350.1,535.0137 C388.16,535.0137 428.26,535.0137 464.85,535.0137" fill="none"
+                  id="updateOperacion-to-editOperacion" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="470.85,535.0137,461.85,531.0137,465.85,535.0137,461.85,539.0137,470.85,535.0137"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="531.042">&#171;include&#187;
+            </text>
+        </g><!--link createOperador to editOperador-->
+        <g class="link" data-entity-1="createOperador" data-entity-2="editOperador" data-source-line="58"
+           data-uid="lnk47" id="link_createOperador_editOperador">
+            <path d="M323.04,616.3537 C371.06,629.2237 439.9246,647.6703 486.4846,660.1503" fill="none"
+                  id="createOperador-to-editOperador" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="492.28,661.7037,484.6225,655.5099,487.4505,660.4092,482.5513,663.2372,492.28,661.7037"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="629.042">&#171;include&#187;
+            </text>
+        </g><!--link updateOperador to editOperador-->
+        <g class="link" data-entity-1="updateOperador" data-entity-2="editOperador" data-source-line="59"
+           data-uid="lnk48" id="link_updateOperador_editOperador">
+            <path d="M348.04,673.0137 C387.64,673.0137 430.42,673.0137 468.16,673.0137" fill="none"
+                  id="updateOperador-to-editOperador" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="474.16,673.0137,465.16,669.0137,469.16,673.0137,465.16,677.0137,474.16,673.0137"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="669.042">&#171;include&#187;
+            </text>
+        </g><!--link createPunto to editPunto-->
+        <g class="link" data-entity-1="createPunto" data-entity-2="editPunto" data-source-line="60" data-uid="lnk49"
+           id="link_createPunto_editPunto">
+            <path d="M332.56,398.0137 C379.72,398.0137 440.51,398.0137 484.15,398.0137" fill="none"
+                  id="createPunto-to-editPunto" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="490.15,398.0137,481.15,394.0137,485.15,398.0137,481.15,402.0137,490.15,398.0137"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="394.042">&#171;include&#187;
+            </text>
+        </g><!--link updatePunto to editPunto-->
+        <g class="link" data-entity-1="updatePunto" data-entity-2="editPunto" data-source-line="61" data-uid="lnk50"
+           id="link_updatePunto_editPunto">
+            <path d="M319.23,342.0037 C369.17,354.9937 445.6233,374.8931 492.6733,387.1331" fill="none"
+                  id="updatePunto-to-editPunto" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="498.48,388.6437,490.777,382.5066,493.6411,387.3848,488.7628,390.2489,498.48,388.6437"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="381" y="355.042">&#171;include&#187;
+            </text>
+        </g><!--link editOperador to readIndex-->
+        <g class="link" data-entity-1="editOperador" data-entity-2="readIndex" data-source-line="63" data-uid="lnk51"
+           id="link_editOperador_readIndex">
+            <path d="M561.38,687.6737 C606.6,714.3237 696.4707,767.2777 740.5107,793.2277" fill="none"
+                  id="editOperador-to-readIndex" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="745.68,796.2737,739.9566,788.2585,741.3722,793.7354,735.8953,795.1509,745.68,796.2737"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="730.042">&#171;include&#187;
+            </text>
+        </g><!--link editOperacion to readIndex-->
+        <g class="link" data-entity-1="editOperacion" data-entity-2="readIndex" data-source-line="64" data-uid="lnk52"
+           id="link_editOperacion_readIndex">
+            <path d="M551.74,550.6537 C580.39,580.2937 643.84,647.0837 693,707.0137 C717.52,736.9137 740.3858,768.8337 754.7158,789.3637"
+                  fill="none" id="editOperacion-to-readIndex"
+                  style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="758.15,794.2837,756.2787,784.6142,755.2882,790.1837,749.7187,789.1931,758.15,794.2837"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="641.042">&#171;include&#187;
+            </text>
+        </g><!--link editPunto to readIndex-->
+        <g class="link" data-entity-1="editPunto" data-entity-2="readIndex" data-source-line="65" data-uid="lnk53"
+           id="link_editPunto_readIndex">
+            <path d="M551.9,413.1637 C571.08,432.4937 604.21,467.4537 628,501.0137 C699.96,602.5137 747.2684,740.8937 762.3184,788.4137"
+                  fill="none" id="editPunto-to-readIndex" style="stroke:#181818;stroke-width:1;stroke-dasharray:7,7;"/>
+            <polygon fill="#181818"
+                     points="764.13,794.1337,765.226,784.346,762.6204,789.367,757.5993,786.7614,764.13,794.1337"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55.6563"
+                  x="637" y="513.042">&#171;include&#187;
+            </text>
+        </g><!--SRC=[ZP91RiGW34NtdC8No1oWYhAjkkfiUW0AReeQXOY0EbBRkpT0b1g7JBgAulzvDkOF-ER1Mt2cV_UWZKFbZHs5aCfR1oypEX5cL796S2ZrqwZn9iGarOVi4QRmEXXbuMlrN_E_001wwdb29rNarWHj7QzVm-Yj-FbhrEEyy75UEYtMtEmnrUZHmVQcwA4McCTgUoAn0RAIHo3bCEaZ5f4OAoixbiO13rX4Ogoix5YeZQ-IDe5nOdr7MLPdWuyhZsyEJTFHzqwrzhlHzdDijbTUlvjvQrOLqdXSoNC8UXek5z8R7g1jpQY6eB7hH44xTIRwNHUxsHgf_4b3vaYH0eyKaNX2YCGVl0xKPMyMgpgEAJIyEzIkJ2DLNZg6GR2xfaqMSMFRP0iuzPTNB-snS4Z_XviiOhFclnhrt2UANlSoLTxup7cQqLy0]-->
+    </g>
+</svg>

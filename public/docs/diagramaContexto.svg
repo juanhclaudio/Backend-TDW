@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     data-diagram-type="STATE" height="290px" preserveAspectRatio="none"
+     style="width:1066px;height:290px;background:#FFFFFF;" version="1.1" viewBox="0 0 1066 290" width="1066px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="74" cy="16" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1;"/>
+        <g id="SHOWED_INDEX">
+            <rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;"
+                  width="133.5723" x="7" y="105"/>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="7" x2="140.5723" y1="133.6211" y2="133.6211"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.5723"
+                  x="17" y="125.1074">SHOWED_INDEX
+            </text>
+        </g>
+        <g id="OPENED_INDEX">
+            <rect fill="#F1F1F1" height="50" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;"
+                  width="129.6963" x="9" y="234"/>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="9" x2="138.6963" y1="262.6211" y2="262.6211"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109.6963"
+                  x="19" y="254.1074">OPENED_INDEX
+            </text>
+        </g><!--link *start* to SHOWED_INDEX-->
+        <g class="link" data-entity-1=".start." data-entity-2="SHOWED_INDEX" data-source-line="4" data-uid="lnk4"
+           id="link_.start._SHOWED_INDEX">
+            <path d="M74,26.17 C74,43.2 74,74.23 74,98.89" fill="none" id="*start*-to-SHOWED_INDEX"
+                  style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="74,104.89,78,95.89,74,99.89,70,95.89,74,104.89"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62.1499"
+                  x="75" y="71.0283">showIndex
+            </text>
+        </g><!--link SHOWED_INDEX to SHOWED_INDEX-->
+        <g class="link" data-entity-1="SHOWED_INDEX" data-entity-2="SHOWED_INDEX" data-source-line="6" data-uid="lnk5"
+           id="link_SHOWED_INDEX_SHOWED_INDEX">
+            <path d="M141.2,127.01 C160.81,127.11 176,128.11 176,130 C176,131.89 166.8099,132.8594 147.1999,132.9594"
+                  fill="none" id="SHOWED_INDEX-to-SHOWED_INDEX" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="141.2,132.99,150.2203,136.9441,146.1999,132.9645,150.1795,128.9442,141.2,132.99"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85.998"
+                  x="182" y="135.5283">readOperacion
+            </text>
+        </g><!--link SHOWED_INDEX to SHOWED_INDEX-->
+        <g class="link" data-entity-1="SHOWED_INDEX" data-entity-2="SHOWED_INDEX" data-source-line="7" data-uid="lnk6"
+           id="link_SHOWED_INDEX_SHOWED_INDEX">
+            <path d="M141.16,124.82 C201.14,122.8 273,124.52 273,130 C273,135.48 207.1366,137.402 147.1566,135.382"
+                  fill="none" id="SHOWED_INDEX-to-SHOWED_INDEX-1" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="141.16,135.18,150.0203,139.4807,146.1572,135.3483,150.2895,131.4852,141.16,135.18"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80.939"
+                  x="279" y="135.5283">readOperador
+            </text>
+        </g><!--link SHOWED_INDEX to SHOWED_INDEX-->
+        <g class="link" data-entity-1="SHOWED_INDEX" data-entity-2="SHOWED_INDEX" data-source-line="8" data-uid="lnk7"
+           id="link_SHOWED_INDEX_SHOWED_INDEX">
+            <path d="M141.21,123.37 C231.16,118.71 365,120.92 365,130 C365,139.08 237.152,141.6004 147.202,136.9404"
+                  fill="none" id="SHOWED_INDEX-to-SHOWED_INDEX-2" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="141.21,136.63,149.991,141.0903,146.2033,136.8887,150.4049,133.101,141.21,136.63"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="59.9917"
+                  x="371" y="135.5283">readPunto
+            </text>
+        </g><!--link SHOWED_INDEX to SHOWED_INDEX-->
+        <g class="link" data-entity-1="SHOWED_INDEX" data-entity-2="SHOWED_INDEX" data-source-line="9" data-uid="lnk8"
+           id="link_SHOWED_INDEX_SHOWED_INDEX">
+            <path d="M141.07,122.12 C251.76,114.69 436,117.31 436,130 C436,142.69 257.7465,145.7118 147.0565,138.2818"
+                  fill="none" id="SHOWED_INDEX-to-SHOWED_INDEX-3" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="141.07,137.88,149.7819,142.4738,146.0588,138.2149,150.3177,134.4917,141.07,137.88"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57.8208"
+                  x="442" y="135.5283">readIndex
+            </text>
+        </g><!--link SHOWED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="SHOWED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="11" data-uid="lnk10"
+           id="link_SHOWED_INDEX_OPENED_INDEX">
+            <path d="M52.88,155.16 C46.49,163.95 40.3,174.36 37,185 C31.7,202.1 36.9745,215.2542 47.3645,229.0742"
+                  fill="none" id="SHOWED_INDEX-to-OPENED_INDEX" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="50.97,233.87,48.7589,224.2726,47.9654,229.8735,42.3645,229.08,50.97,233.87"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="27.4663"
+                  x="38" y="200.0283">login
+            </text>
+        </g><!--link OPENED_INDEX to SHOWED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="SHOWED_INDEX" data-source-line="23" data-uid="lnk20"
+           id="link_OPENED_INDEX_SHOWED_INDEX">
+            <path d="M74,233.9 C74,211.33 74,183.78 74,161.19" fill="none" id="OPENED_INDEX-to-SHOWED_INDEX"
+                  style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="74,155.19,70,164.19,74,160.19,78,164.19,74,155.19"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="35.4199"
+                  x="75" y="200.0283">logout
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="13" data-uid="lnk11"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.4,257.5 C158.86,257.55 174,258.05 174,259 C174,259.95 164.86,260.4346 145.4,260.4846"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="139.4,260.5,148.4102,264.4769,144.4,260.4872,148.3897,256.4769,139.4,260.5"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73.7344"
+                  x="180" y="264.5283">updatePunto
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="14" data-uid="lnk12"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.24,256.38 C194.69,255.42 259,256.29 259,259 C259,261.71 200.6891,262.6839 145.2391,261.7239"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-1" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.24,261.62,148.1694,265.7752,144.2393,261.7066,148.3079,257.7764,139.24,261.62"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70.1035"
+                  x="265" y="264.5283">createPunto
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="15" data-uid="lnk13"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.3,255.63 C222.38,253.37 341,254.49 341,259 C341,263.51 228.3778,264.7932 145.2978,262.5332"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-2" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.3,262.37,148.1879,266.6133,144.2982,262.506,148.4054,258.6162,139.3,262.37"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99.7407"
+                  x="347" y="264.5283">updateOperacion
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="16" data-uid="lnk14"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.22,255.17 C253.43,251.32 452,252.59 452,259 C452,265.41 259.4266,266.8821 145.2166,263.0321"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-3" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.22,262.83,148.0801,267.1309,144.2172,262.9985,148.3497,259.1355,139.22,262.83"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="96.1099"
+                  x="458" y="264.5283">createOperacion
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="17" data-uid="lnk15"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.43,254.77 C280.25,249.29 560,250.7 560,259 C560,267.3 286.2455,268.9433 145.4255,263.4633"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-4" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.43,263.23,148.2677,267.5769,144.4262,263.4244,148.5787,259.583,139.43,263.23"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="94.6816"
+                  x="566" y="264.5283">updateOperador
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="18" data-uid="lnk16"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.14,254.44 C303.59,247.27 666,248.79 666,259 C666,269.21 309.5843,270.9914 145.1343,263.8214"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-5" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.14,263.56,147.9572,267.9482,144.1353,263.7778,148.3057,259.9558,139.14,263.56"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91.0508"
+                  x="672" y="264.5283">createOperador
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="19" data-uid="lnk17"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.11,254.13 C325.06,245.25 769,246.87 769,259 C769,271.13 331.0532,273.0362 145.1032,264.1562"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-6" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.11,263.87,147.909,268.2948,144.1043,264.1085,148.2906,260.3039,139.11,263.87"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69.3926"
+                  x="775" y="264.5283">deletePunto
+            </text>
+        </g><!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="20" data-uid="lnk18"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139,253.82 C341.66,243.24 850,244.97 850,259 C850,273.03 347.6518,275.0728 144.9918,264.4928"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-7" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818" points="139,264.18,147.7792,268.6438,143.9932,264.4407,148.1963,260.6547,139,264.18"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95.3989"
+                  x="856" y="264.5283">deleteOperacion
+            </text>
+        </g>
+        <!--link OPENED_INDEX to OPENED_INDEX-->
+        <g class="link" data-entity-1="OPENED_INDEX" data-entity-2="OPENED_INDEX" data-source-line="21" data-uid="lnk19"
+           id="link_OPENED_INDEX_OPENED_INDEX">
+            <path d="M139.27,253.58 C362.32,241.23 957,243.04 957,259 C957,274.96 368.3108,277.1017 145.2608,264.7517"
+                  fill="none" id="OPENED_INDEX-to-OPENED_INDEX-8" style="stroke:#181818;stroke-width:1;"/>
+            <polygon fill="#181818"
+                     points="139.27,264.42,148.0351,268.9114,144.2624,264.6964,148.4774,260.9237,139.27,264.42"
+                     style="stroke:#181818;stroke-width:1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90.3398"
+                  x="963" y="264.5283">deleteOperador
+            </text>
+        </g>
+        <!--SRC=[bT7D2e9040Vm-px5d0DVe4Cd5_AYGeU4Y31dAC5sP1knnq_PGvf5qtNtnt- -X5iGXZEBy0smzbH9pSwOm-e84NBleWtijjdUngSaZMq1QxXVkKySqiEOsK-qf9vAp5hoPJM6gZMoL-6ySy8g-QtVBBVfX3PygOVXPwyVMDTYAHIg_xBLK5vhG-vhORfilP_aZol-8rx3aHhIJXgillE97rjP-hUR3uVaJfu0]-->
+    </g>
+</svg>

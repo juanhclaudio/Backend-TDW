@@ -1,0 +1,67 @@
+@startuml
+
+left to right direction
+
+actor User
+usecase readIndex
+
+package publico {
+actor Publico
+   usecase readOperacion
+   usecase readOperador
+   usecase readPunto
+}
+
+package gestores {
+   actor Gestor
+   usecase logout
+   usecase login
+   usecase createOperacion
+   usecase createOperador
+   usecase createPunto
+   usecase updateOperacion
+   usecase updateOperador
+   usecase updatePunto
+   usecase deleteOperacion
+   usecase deleteOperador
+   usecase deletePunto
+   usecase editOperacion
+   usecase editOperador
+   usecase editPunto
+}
+
+User --> readIndex
+
+User <|-down- Publico
+Publico --> readOperador
+Publico --> readOperacion
+Publico --> readPunto
+
+readOperador ..> readIndex : <<include>>
+readOperacion ..> readIndex : <<include>>
+readPunto ..> readIndex : <<include>>
+
+User <|-down- Gestor
+Gestor --> login
+Gestor --> createOperacion
+Gestor --> updateOperacion
+Gestor --> deleteOperacion
+Gestor --> createOperador
+Gestor --> updateOperador
+Gestor --> deleteOperador
+Gestor --> createPunto
+Gestor --> updatePunto
+Gestor --> deletePunto
+Gestor --> logout
+
+createOperacion ..> editOperacion : <<include>>
+updateOperacion ..> editOperacion : <<include>>
+createOperador ..> editOperador : <<include>>
+updateOperador ..> editOperador : <<include>>
+createPunto ..> editPunto : <<include>>
+updatePunto ..> editPunto : <<include>>
+
+editOperador ..> readIndex : <<include>>
+editOperacion ..> readIndex : <<include>>
+editPunto ..> readIndex : <<include>>
+@enduml

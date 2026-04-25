@@ -1,0 +1,33 @@
+@startuml
+class Punto {
++ puntoId: Integer
++ tipo: Enum [PUERTA | VIA]
++ codigo: String
+}
+
+class Operador {
++ operadorId: Integer
++ nombre: String
++ siglas: String
++ color: String
++ urlIcono: String
+}
+
+class Operacion {
++ operacionID: ULID
++ tipo: Enum [VUELO | TREN]
++ codigo: String
++ sentido: Enum [SALIDA | LLEGADA]
++ origen: String
++ destino: String
++ horaProgramada: DateTime
++ horaEstimada: DateTime
++ estado: Enum [PROGRAMADO | EMBARCANDO | RETRASADO | CANCELADO | EN_RUTA | LLEGADO]
++ operadorId:
++ puntoId:
+}
+
+Operacion "*" <-down-> Punto
+Operacion "*" <-down-> Operador
+
+@enduml

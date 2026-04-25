@@ -1,0 +1,25 @@
+@startuml
+
+top to bottom direction
+
+[*] -down-> SHOWED_INDEX : showIndex
+
+SHOWED_INDEX --> SHOWED_INDEX : readOperacion
+SHOWED_INDEX --> SHOWED_INDEX : readOperador
+SHOWED_INDEX --> SHOWED_INDEX : readPunto
+SHOWED_INDEX --> SHOWED_INDEX : readIndex
+
+SHOWED_INDEX --> OPENED_INDEX : login
+
+OPENED_INDEX --> OPENED_INDEX : updatePunto
+OPENED_INDEX --> OPENED_INDEX : createPunto
+OPENED_INDEX --> OPENED_INDEX : updateOperacion
+OPENED_INDEX --> OPENED_INDEX : createOperacion
+OPENED_INDEX --> OPENED_INDEX : updateOperador
+OPENED_INDEX --> OPENED_INDEX : createOperador
+OPENED_INDEX --> OPENED_INDEX : deletePunto
+OPENED_INDEX --> OPENED_INDEX : deleteOperacion
+OPENED_INDEX --> OPENED_INDEX : deleteOperador
+
+OPENED_INDEX --> SHOWED_INDEX : logout
+@enduml
