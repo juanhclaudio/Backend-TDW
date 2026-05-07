@@ -25,6 +25,8 @@ tags:
     description: Operator management
   - name: '🎯 Spots'
     description: Spot management
+  - name: '✈️ Operations'
+    description: Operation management (flights/trains)
 
 paths:
   '/access_token':
@@ -593,6 +595,160 @@ paths:
         '404':
           $ref: '#/components/responses/Response_404'
 
+  /operations:
+    get:
+      tags:
+        - '✈️ Operations'
+      summary: Retrieves the collection of Operation resources.
+      description: Returns all operations from the system.
+      operationId: api_operation_cget
+      parameters:
+        - $ref: '#/components/parameters/elementTextParam'
+        - $ref: '#/components/parameters/orderParam'
+        - $ref: '#/components/parameters/orderingParam'
+      responses:
+        '200':
+          description: Object containing an array of Operations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  operaciones:
+                    description: Operations array
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Operacion'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    options:
+      tags:
+        - '✈️ Operations'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_operations_coptions
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    post:
+      tags:
+        - '✈️ Operations'
+      summary: Creates an Operation resource.
+      description: Creates a new Operation. Requires `GESTOR` role.
+      operationId: createOperation
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/OperacionRequestBody'
+      responses:
+        '201':
+          description: '`CREATED`: Operation created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operacion'
+          headers:
+            Location:
+              $ref: '#/components/headers/Location'
+          links:
+            GetOperationById:
+              operationId: readOperation
+              parameters:
+                operationId: '$response.body#/operacionId'
+              description: >
+                The `operacionId` value returned in the response can be used as
+                the `operationId` parameter in `GET /operations/{operationId}`.
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '422':
+          $ref: '#/components/responses/Response_422'
+
+  /operations/{operationId}:
+    parameters:
+      - $ref: '#/components/parameters/operationId'
+    options:
+      tags:
+        - '✈️ Operations'
+      summary: Provides the list of HTTP supported methods.
+      description: Return a `Allow` header with a comma separated list of HTTP supported methods.
+      operationId: api_operations_options_id
+      responses:
+        '204':
+          $ref: '#/components/responses/Response_Options'
+    get:
+      tags:
+        - '✈️ Operations'
+      summary: Retrieves an Operation resource based on a single ID.
+      description: Returns the Operation identified by `operationId`.
+      operationId: readOperation
+      responses:
+        '200':
+          description: Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operacion'
+          headers:
+            ETag:
+              $ref: '#/components/headers/ETag'
+        '404':
+          $ref: '#/components/responses/Response_404'
+    put:
+      tags:
+        - '✈️ Operations'
+      summary: Updates the Operation resource.
+      description: |
+        Updates the Operation identified by `operationId`. Requires `GESTOR` role.
+        Allows updating: `tipo`, `codigo`, `sentido`, `origen`, `destino`, `horaProgramada`, `horaEstimada`, `estado`, `operadorId`, `puntoId`.
+      operationId: updateOperation
+      security:
+        - MiWApiSecurity: [ gestor ]
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateOperacionRequestBody'
+      parameters:
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '209':
+          description: '`CONTENT RETURNED`: Operation previously existed and is now updated'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operacion'
+        '400':
+          $ref: '#/components/responses/Response_400'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+        '428':
+          $ref: '#/components/responses/Response_428'
+    delete:
+      tags:
+        - '✈️ Operations'
+      summary: Removes the Operation resource.
+      description: Deletes the Operation identified by `operationId`. Requires `GESTOR` role.
+      operationId: deleteOperation
+      security:
+        - MiWApiSecurity: [ gestor ]
+      responses:
+        '204':
+          description: '`NO CONTENT`: Operation deleted &lt;Response body is empty&gt;'
+        '401':
+          $ref: '#/components/responses/Response_401'
+        '403':
+          $ref: '#/components/responses/Response_403'
+        '404':
+          $ref: '#/components/responses/Response_404'
+
 components:
   schemas:
     User:
@@ -715,6 +871,84 @@ components:
           PuntoId: 2023
           tipo: "PUERTA"
           codigo: "P2023"
+
+    Operacion:
+      type: object
+      properties:
+        operacionId:
+          description: Operation ULID (26-char Base32)
+          type: string
+          maxLength: 26
+          readOnly: true
+          example: '01KPY47KQDTNHW9N5QJ0PGP88Y'
+        tipo:
+          description: Operation type
+          type: string
+          enum:
+            - vuelo
+            - tren
+        codigo:
+          description: Operation code (max 10 chars, unique)
+          type: string
+          maxLength: 10
+        sentido:
+          description: Operation direction
+          type: string
+          enum:
+            - salida
+            - llegada
+        origen:
+          description: Origin (max 60 chars)
+          type: string
+          maxLength: 60
+        destino:
+          description: Destination (max 60 chars)
+          type: string
+          maxLength: 60
+        horaProgramada:
+          description: Scheduled time
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-06-01 08:30:00'
+        horaEstimada:
+          description: Estimated time
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-06-01 08:45:00'
+        estado:
+          description: Operation status
+          type: string
+          enum:
+            - programado
+            - embarcando
+            - retrasado
+            - cancelado
+            - en ruta
+            - llegado
+        operadorId:
+          description: ID of the associated Operator
+          type: integer
+          format: int64
+        puntoId:
+          description: ID of the associated Spot (Punto)
+          type: integer
+          format: int64
+      required: [ tipo, codigo, sentido, origen, destino, estado, operadorId, puntoId ]
+      example:
+        operacion:
+          operacionId: '01KPY47KQDTNHW9N5QJ0PGP88Y'
+          tipo: vuelo
+          codigo: 'IB1234'
+          sentido: salida
+          origen: 'Madrid Barajas'
+          destino: 'Barcelona El Prat'
+          horaProgramada: '2025-06-01 08:30:00'
+          horaEstimada: '2025-06-01 08:45:00'
+          estado: programado
+          operadorId: 1
+          puntoId: 3
 
     Message:
       type: object
@@ -887,7 +1121,127 @@ components:
                   - publico
                   - publico+gestor
             required: [ 'username', 'password']
-    OperatorRequestBody:
+    OperacionRequestBody:
+      description: '`Operacion` data'
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tipo:
+                description: Operation type
+                type: string
+                enum:
+                  - vuelo
+                  - tren
+              codigo:
+                description: Operation code (max 10 chars)
+                type: string
+                maxLength: 10
+              sentido:
+                description: Operation direction
+                type: string
+                enum:
+                  - salida
+                  - llegada
+              origen:
+                description: Origin (max 60 chars)
+                type: string
+                maxLength: 60
+              destino:
+                description: Destination (max 60 chars)
+                type: string
+                maxLength: 60
+              horaProgramada:
+                description: Scheduled time (Y-m-d H:i:s)
+                type: string
+                format: date-time
+                nullable: true
+              horaEstimada:
+                description: Estimated time (Y-m-d H:i:s)
+                type: string
+                format: date-time
+                nullable: true
+              estado:
+                description: Estado actual de la operación
+                type: string
+                enum:
+                  - programado
+                  - embarcando
+                  - retrasado
+                  - cancelado
+                  - en ruta
+                  - llegado
+              operadorId:
+                description: ID of the associated Operator
+                type: integer
+                format: int64
+              puntoId:
+                description: ID of the associated Spot (Punto)
+                type: integer
+                format: int64
+            required: [ tipo, codigo, sentido, origen, destino, estado, operadorId, puntoId ]
+    UpdateOperacionRequestBody:
+      description: '`Operacion` data to update (all fields optional)'
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tipo:
+                description: New operation type
+                type: string
+                enum:
+                  - vuelo
+                  - tren
+              codigo:
+                description: New operation code (max 10 chars)
+                type: string
+                maxLength: 10
+              sentido:
+                description: New operation direction
+                type: string
+                enum:
+                  - salida
+                  - llegada
+              origen:
+                description: New origin (max 60 chars)
+                type: string
+                maxLength: 60
+              destino:
+                description: New destination (max 60 chars)
+                type: string
+                maxLength: 60
+              horaProgramada:
+                description: New scheduled time (Y-m-d H:i:s)
+                type: string
+                format: date-time
+                nullable: true
+              horaEstimada:
+                description: New estimated time (Y-m-d H:i:s)
+                type: string
+                format: date-time
+                nullable: true
+              estado:
+                description: Estado actual de la operación
+                type: string
+                enum:
+                  - programado
+                  - embarcando
+                  - retrasado
+                  - cancelado
+                  - en ruta
+                  - llegado
+              operadorId:
+                description: New ID of the associated Operator
+                type: integer
+                format: int64
+              puntoId:
+                description: New ID of the associated Spot (Punto)
+                type: integer
+                format: int64
       description: '`Operator` data'
       content:
         application/json:
@@ -924,6 +1278,15 @@ components:
             required: [ 'codigo', 'tipo' ]
 
   parameters:
+    operationId:
+      name: operationId
+      in: path
+      description: Operation ULID (26-char Base32)
+      required: true
+      schema:
+        type: string
+        maxLength: 26
+        pattern: '^[0-9A-HJKMNP-TV-Z]{26}$'
     userId:
       name: userId
       in: path
