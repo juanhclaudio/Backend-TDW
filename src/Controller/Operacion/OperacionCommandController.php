@@ -11,6 +11,9 @@ use TDW\IPanel\Controller\TraitController;
 use TDW\IPanel\Model\Operacion;
 use TDW\IPanel\Model\Operador;
 use TDW\IPanel\Model\Punto;
+use TDW\IPanel\Enum\TipoOperacion;
+use TDW\IPanel\Enum\SentidoOperacion;
+use TDW\IPanel\Enum\EstadoOperacion;
 use TDW\IPanel\Utility\Error;
 
 class OperacionCommandController
@@ -37,15 +40,19 @@ class OperacionCommandController
         }
 
         try {
+            $tipo = TipoOperacion::from($data['tipo']);
+            $sentido = SentidoOperacion::from($data['sentido']);
+            $estado = EstadoOperacion::from($data['estado'] ?? 'programado');
+
             $operacion = new Operacion(
-                $data['tipo'],
+                $tipo,
                 $data['codigo'],
-                $data['sentido'],
+                $sentido,
                 $data['origen'],
                 $data['destino'],
                 $operador,
                 $punto,
-                $data['estado'] ?? 'programado',
+                $estado,
                 isset($data['horaProgramada']) ? new DateTime($data['horaProgramada']) : null,
                 isset($data['horaEstimada']) ? new DateTime($data['horaEstimada']) : null
             );
@@ -54,6 +61,8 @@ class OperacionCommandController
             $this->entityManager->flush();
 
             return $response->withStatus(StatusCode::STATUS_CREATED)->withJson($operacion);
+        } catch (\ValueError $e) {
+            return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
         } catch (\Exception $e) {
             return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
         }
@@ -70,7 +79,7 @@ class OperacionCommandController
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
-        // Validación de ETag (If-Match) para asegurar integridad
+        // Validación de ETag (If-Match)
         $etag = md5((string) json_encode($operacion));
         if ($request->getHeaderLine('If-Match') !== $etag) {
             return Error::createResponse($response, StatusCode::STATUS_PRECONDITION_REQUIRED);
@@ -78,28 +87,42 @@ class OperacionCommandController
 
         $data = $request->getParsedBody();
 
-        // Actualización de campos simples
-        if (isset($data['tipo'])) $operacion->setTipo($data['tipo']);
-        if (isset($data['codigo'])) $operacion->setCodigo($data['codigo']);
-        if (isset($data['sentido'])) $operacion->setSentido($data['sentido']);
-        if (isset($data['origen'])) $operacion->setOrigen($data['origen']);
-        if (isset($data['destino'])) $operacion->setDestino($data['destino']);
-        if (isset($data['estado'])) $operacion->setEstado($data['estado']);
-        if (isset($data['horaProgramada'])) $operacion->setHoraProgramada(new DateTime($data['horaProgramada']));
-        if (isset($data['horaEstimada'])) $operacion->setHoraEstimada(new DateTime($data['horaEstimada']));
+        try {
+            // Actualización con conversión a Enums
+            if (isset($data['tipo'])) {
+                $operacion->setTipo(TipoOperacion::from($data['tipo']));
+            }
+            if (isset($data['sentido'])) {
+                $operacion->setSentido(SentidoOperacion::from($data['sentido']));
+            }
+            if (isset($data['estado'])) {
+                $operacion->setEstado(EstadoOperacion::from($data['estado']));
+            }
 
-        // Reasignar relaciones si vienen en el body
-        if (isset($data['operadorId'])) {
-            $newOp = $this->entityManager->getRepository(Operador::class)->find($data['operadorId']);
-            if ($newOp) $operacion->setOperador($newOp);
-        }
-        if (isset($data['puntoId'])) {
-            $newPt = $this->entityManager->getRepository(Punto::class)->find($data['puntoId']);
-            if ($newPt) $operacion->setPunto($newPt);
-        }
+            // Campos de texto y fecha
+            if (isset($data['codigo'])) $operacion->setCodigo($data['codigo']);
+            if (isset($data['origen'])) $operacion->setOrigen($data['origen']);
+            if (isset($data['destino'])) $operacion->setDestino($data['destino']);
+            if (isset($data['horaProgramada'])) $operacion->setHoraProgramada(new DateTime($data['horaProgramada']));
+            if (isset($data['horaEstimada'])) $operacion->setHoraEstimada(new DateTime($data['horaEstimada']));
 
-        $this->entityManager->flush();
-        return $response->withStatus(209)->withJson($operacion); // 209 Content Returned
+            // Reasignar relaciones
+            if (isset($data['operadorId'])) {
+                $newOp = $this->entityManager->getRepository(Operador::class)->find($data['operadorId']);
+                if ($newOp) $operacion->setOperador($newOp);
+            }
+            if (isset($data['puntoId'])) {
+                $newPt = $this->entityManager->getRepository(Punto::class)->find($data['puntoId']);
+                if ($newPt) $operacion->setPunto($newPt);
+            }
+
+            $this->entityManager->flush();
+            return $response->withStatus(209)->withJson($operacion);
+        } catch (\ValueError $e) {
+            return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return Error::createResponse($response, StatusCode::STATUS_INTERNAL_SERVER_ERROR);
+        }
     }
 
     public function delete(Request $request, Response $response, array $args): Response

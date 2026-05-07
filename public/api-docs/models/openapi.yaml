@@ -1256,6 +1256,27 @@ components:
                 type: string
                 maxLength: 6
             required: [ 'codigo', 'tipo' ]
+    OperatorRequestBody:
+      description: '`Operator` data'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              nombre:
+                type: string
+                maxLength: 80
+              siglas:
+                type: string
+                maxLength: 6
+              color:
+                type: string
+                maxLength: 20
+              urlIcono:
+                type: string
+                maxLength: 2047
+                format: url
+            required: [ 'nombre', 'siglas' ]
 
   parameters:
     operationId:
