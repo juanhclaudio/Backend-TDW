@@ -31,7 +31,7 @@ class SpotQueryController
     // constructor - receives the EntityManager from container instance
     public function __construct(
         protected readonly EntityManager $entityManager
-    ) { }
+    ) {}
 
     /**
      * Summary: Returns all elements
@@ -40,9 +40,20 @@ class SpotQueryController
      */
     public function cget(Request $request, Response $response): Response
     {
-        assert(in_array($request->getMethod(), [ 'GET', 'HEAD' ], true));
+        /** @var array<string, string> $params */
+        $params = $request->getQueryParams();
+        $criteria = $this->buildCriteria($params);
 
-        return Error::createResponse($response, StatusCode::STATUS_NOT_IMPLEMENTED);
+        $elements = $this->entityManager
+            ->getRepository(Punto::class)
+            ->matching($criteria)
+            ->getValues();
+
+        if (0 === count($elements)) {
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
+        }
+
+        return $response->withJson(['puntos' => $elements]);
     }
 
     /**
@@ -56,9 +67,15 @@ class SpotQueryController
      */
     public function get(Request $request, Response $response, array $args): Response
     {
-        assert(in_array($request->getMethod(), [ 'GET', 'HEAD' ], true));
+        $id = (int) $args['spotId'];
+        if (!$this->verifyInputId($id)) {
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
+        }
+        $element = $this->entityManager->getRepository(Punto::class)->find($id);
 
-        return Error::createResponse($response, StatusCode::STATUS_NOT_IMPLEMENTED);
+        return ($element instanceof Punto)
+            ? $response->withJson($element)
+            : Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
     }
 
     /**
