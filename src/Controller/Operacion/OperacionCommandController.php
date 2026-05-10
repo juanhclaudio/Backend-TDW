@@ -60,7 +60,12 @@ class OperacionCommandController
             $this->entityManager->persist($operacion);
             $this->entityManager->flush();
 
-            return $response->withStatus(StatusCode::STATUS_CREATED)->withJson($operacion);
+            return $response
+            ->withAddedHeader(
+                'Location',
+                $request->getUri() . '/' . $operacion->getId()
+            )
+            ->withJson($operacion, StatusCode::STATUS_CREATED);
         } catch (\ValueError $e) {
             return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
         } catch (\Exception $e) {

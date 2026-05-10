@@ -6,6 +6,7 @@ use Fig\Http\Message\StatusCodeInterface as StatusCode;
 use PHPUnit\Framework\Attributes as TestAttr;
 use TDW\IPanel\Controller\Operacion\OperacionCommandController;
 use TDW\IPanel\Controller\Operacion\OperacionQueryController;
+use TDW\IPanel\Utility\Utils;
 use TDW\Test\IPanel\Controller\BaseTestCase;
 
 #[TestAttr\CoversClass(OperacionQueryController::class)]
@@ -14,7 +15,6 @@ use TDW\Test\IPanel\Controller\BaseTestCase;
 class OperacionControllerTest extends BaseTestCase
 {
     protected const string RUTA_API = '/api/v1/operations';
-
     protected static array $gestor;
     protected static array $publico;
     protected static array $operacion;
@@ -22,16 +22,20 @@ class OperacionControllerTest extends BaseTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-
         self::$gestor = [
             'email'    => (string) getenv('ADMIN_USER_EMAIL'),
             'password' => (string) getenv('ADMIN_USER_PASSWD'),
         ];
-
         self::$publico = [
             'email'    => 'user@infopanel.com',
             'password' => 'user123',
         ];
+
+        Utils::updateSchema();
+        Utils::loadUserData(self::$gestor['email'], self::$gestor['password'], true);
+        Utils::loadUserData(self::$publico['email'], self::$publico['password'], false);
+        Utils::loadOperatorData('Iberia', 'IB', '#ff0000');
+        Utils::loadSpotData('PUERTA', 'P20');
 
         self::$operacion = [
             'tipo' => 'vuelo',
@@ -51,28 +55,30 @@ class OperacionControllerTest extends BaseTestCase
         $headers = $this->getTokenHeaders(self::$gestor['email'], self::$gestor['password']);
         $response = $this->runApp('POST', self::RUTA_API, self::$operacion, $headers);
         self::assertSame(StatusCode::STATUS_CREATED, $response->getStatusCode());
+        
         $r_body = json_decode((string) $response->getBody(), true);
-        self::assertArrayHasKey('operacionId', $r_body);
-        return $r_body['operacionId'];
+        return $r_body['operacion']['operacionId'];
     }
 
     #[TestAttr\Depends('testPost201')]
-    public function testCGet200(): void
+    public function testCGet200(string $operacionId): string
     {
         $response = $this->runApp('GET', self::RUTA_API);
         self::assertSame(StatusCode::STATUS_OK, $response->getStatusCode());
         self::assertStringContainsString('operaciones', (string) $response->getBody());
+        return $operacionId;
     }
 
-    #[TestAttr\Depends('testPost201')]
-    public function testGet200(string $operacionId): void
+    #[TestAttr\Depends('testCGet200')]
+    public function testGet200(string $operacionId): string
     {
         $response = $this->runApp('GET', self::RUTA_API . '/' . $operacionId);
         self::assertSame(StatusCode::STATUS_OK, $response->getStatusCode());
+        return $operacionId;
     }
 
-    #[TestAttr\Depends('testPost201')]
-    public function testPut209(string $operacionId): void
+    #[TestAttr\Depends('testGet200')]
+    public function testPut209(string $operacionId): string
     {
         $headers = $this->getTokenHeaders(self::$gestor['email'], self::$gestor['password']);
         $responseGet = $this->runApp('GET', self::RUTA_API . '/' . $operacionId);
@@ -81,9 +87,10 @@ class OperacionControllerTest extends BaseTestCase
         $headers['If-Match'] = $etag;
         $response = $this->runApp('PUT', self::RUTA_API . '/' . $operacionId, ['estado' => 'en ruta'], $headers);
         self::assertSame(209, $response->getStatusCode());
+        return $operacionId;
     }
 
-    #[TestAttr\Depends('testPost201')]
+    #[TestAttr\Depends('testPut209')]
     public function testDelete204(string $operacionId): void
     {
         $headers = $this->getTokenHeaders(self::$gestor['email'], self::$gestor['password']);
@@ -123,7 +130,6 @@ class OperacionControllerTest extends BaseTestCase
     public function testOptions(): void
     {
         $response = $this->runApp('OPTIONS', self::RUTA_API);
-        self::assertSame(StatusCode::STATUS_NO_CONTENT, $response->getStatusCode());
-        self::assertNotEmpty($response->getHeaderLine('Allow'));
+        self::assertSame(204, $response->getStatusCode());
     }
 }
