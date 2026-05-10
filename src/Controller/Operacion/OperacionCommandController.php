@@ -24,14 +24,14 @@ class OperacionCommandController
 
     public function post(Request $request, Response $response): Response
     {
-        // 1. Verificar rol GESTOR
+        
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $data = $request->getParsedBody();
 
-        // 2. Validar entidades relacionadas
+        
         $operador = $this->entityManager->getRepository(Operador::class)->find($data['operadorId'] ?? 0);
         $punto = $this->entityManager->getRepository(Punto::class)->find($data['puntoId'] ?? 0);
 
@@ -71,7 +71,7 @@ class OperacionCommandController
     public function put(Request $request, Response $response, array $args): Response
     {
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $operacion = $this->entityManager->getRepository(Operacion::class)->find($args['operationId']);
@@ -79,7 +79,7 @@ class OperacionCommandController
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
-        // Validación de ETag (If-Match)
+        
         $etag = md5((string) json_encode($operacion));
         if ($request->getHeaderLine('If-Match') !== $etag) {
             return Error::createResponse($response, StatusCode::STATUS_PRECONDITION_REQUIRED);
@@ -88,7 +88,7 @@ class OperacionCommandController
         $data = $request->getParsedBody();
 
         try {
-            // Actualización con conversión a Enums
+            
             if (isset($data['tipo'])) {
                 $operacion->setTipo(TipoOperacion::from($data['tipo']));
             }
@@ -99,14 +99,14 @@ class OperacionCommandController
                 $operacion->setEstado(EstadoOperacion::from($data['estado']));
             }
 
-            // Campos de texto y fecha
+            
             if (isset($data['codigo'])) $operacion->setCodigo($data['codigo']);
             if (isset($data['origen'])) $operacion->setOrigen($data['origen']);
             if (isset($data['destino'])) $operacion->setDestino($data['destino']);
             if (isset($data['horaProgramada'])) $operacion->setHoraProgramada(new DateTime($data['horaProgramada']));
             if (isset($data['horaEstimada'])) $operacion->setHoraEstimada(new DateTime($data['horaEstimada']));
 
-            // Reasignar relaciones
+            
             if (isset($data['operadorId'])) {
                 $newOp = $this->entityManager->getRepository(Operador::class)->find($data['operadorId']);
                 if ($newOp) $operacion->setOperador($newOp);
@@ -128,7 +128,7 @@ class OperacionCommandController
     public function delete(Request $request, Response $response, array $args): Response
     {
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $operacion = $this->entityManager->getRepository(Operacion::class)->find($args['operationId']);

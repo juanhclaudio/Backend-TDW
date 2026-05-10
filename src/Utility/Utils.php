@@ -124,4 +124,54 @@ class Utils
 
         return $user->getId();
     }
+    
+    public static function loadOperatorData(
+        string $nombre,
+        string $siglas,
+        ?string $color = null,
+        ?string $urlIcono = null
+    ): int {
+        $entityManager = DoctrineConnector::getEntityManager();
+        $operator = new \TDW\IPanel\Model\Operador($nombre, $siglas, $color, $urlIcono);
+        $entityManager->persist($operator);
+        $entityManager->flush();
+        return $operator->getId();
+    }
+
+    public static function loadSpotData(
+        string $tipo,
+        string $codigo
+    ): int {
+        $entityManager = DoctrineConnector::getEntityManager();
+        $tipoPunto = \TDW\IPanel\Enum\TipoPunto::from(strtoupper($tipo));
+        $spot = new \TDW\IPanel\Model\Punto($tipoPunto, $codigo);
+        $entityManager->persist($spot);
+        $entityManager->flush();
+        return $spot->getId();
+    }
+
+    public static function loadOperationData(array $data): string
+    {
+        $entityManager = DoctrineConnector::getEntityManager();
+        $operador = $entityManager->getRepository(\TDW\IPanel\Model\Operador::class)->find($data['operadorId']);
+        $punto = $entityManager->getRepository(\TDW\IPanel\Model\Punto::class)->find($data['puntoId']);
+        
+        $operacion = new \TDW\IPanel\Model\Operacion(
+            \TDW\IPanel\Enum\TipoOperacion::from($data['tipo']),
+            $data['codigo'],
+            \TDW\IPanel\Enum\SentidoOperacion::from($data['sentido']),
+            $data['origen'],
+            $data['destino'],
+            $operador,
+            $punto,
+            \TDW\IPanel\Enum\EstadoOperacion::from($data['estado'] ?? 'programado'),
+            isset($data['horaProgramada']) ? new \DateTime($data['horaProgramada']) : null,
+            isset($data['horaEstimada']) ? new \DateTime($data['horaEstimada']) : null
+        );
+        
+        $entityManager->persist($operacion);
+        $entityManager->flush();
+        return $operacion->getId();
+    }
+
 }

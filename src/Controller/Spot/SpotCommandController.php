@@ -21,20 +21,20 @@ class SpotCommandController
 
     public function post(Request $request, Response $response): Response
     {
-        // 1. Seguridad: Solo gestores
+        
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $data = $request->getParsedBody();
 
-        // 2. Validación de datos obligatorios
+        
         if (!isset($data['codigo'], $data['tipo'])) {
             return Error::createResponse($response, StatusCode::STATUS_UNPROCESSABLE_ENTITY);
         }
 
         try {
-            // Validar que el tipo sea un valor válido del Enum (PUERTA o VIA)
+            
             $tipo = TipoPunto::from(strtoupper($data['tipo']));
             
             $punto = new Punto($tipo, $data['codigo']);
@@ -53,7 +53,7 @@ class SpotCommandController
     public function put(Request $request, Response $response, array $args): Response
     {
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $id = (int) $args['spotId'];
@@ -63,7 +63,7 @@ class SpotCommandController
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
-        // Validación de Integridad (ETag / If-Match)
+        
         $etag = md5((string) json_encode($punto));
         if ($request->getHeaderLine('If-Match') !== $etag) {
             return Error::createResponse($response, StatusCode::STATUS_PRECONDITION_REQUIRED);
@@ -71,7 +71,7 @@ class SpotCommandController
 
         $data = $request->getParsedBody();
 
-        // Actualización parcial de campos
+        
         if (isset($data['codigo'])) {
             $punto->setCodigo($data['codigo']);
         }
@@ -84,13 +84,13 @@ class SpotCommandController
         }
 
         $this->entityManager->flush();
-        return $response->withStatus(209)->withJson($punto); // 209 Content Returned
+        return $response->withStatus(209)->withJson($punto); 
     }
 
     public function delete(Request $request, Response $response, array $args): Response
     {
         if (!$this->checkGestorScope($request)) {
-            return Error::createResponse($response, StatusCode::STATUS_FORBIDDEN);
+            return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
         $id = (int) $args['spotId'];
@@ -105,7 +105,7 @@ class SpotCommandController
             $this->entityManager->flush();
             return $response->withStatus(StatusCode::STATUS_NO_CONTENT);
         } catch (\Exception $e) {
-            // Error común: No se puede borrar si hay operaciones que dependen de este punto
+            
             return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
         }
     }
