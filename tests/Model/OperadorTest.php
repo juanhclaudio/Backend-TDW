@@ -132,9 +132,9 @@ class OperadorTest extends TestCase
     public function testOperaciones(): void
     {
         self::$operador->addOperacion(self::$operacion);
-        self::assertSame(1, count(self::$operador->getOperaciones()));
+        self::assertCount(1, self::$operador->getOperaciones());
         self::$operador->removeOperacion(self::$operacion);
-        self::assertSame(0, count(self::$operador->getOperaciones()));
+        self::assertCount(0, self::$operador->getOperaciones());
     }
 
     #[Tests\Depends('testConstructor')]

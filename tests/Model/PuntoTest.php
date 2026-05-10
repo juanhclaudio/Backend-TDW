@@ -101,9 +101,9 @@ class PuntoTest extends TestCase
     public function testOperaciones(): void
     {
         self::$punto->addOperacion(self::$operacion);
-        self::assertSame(1, count(self::$punto->getOperaciones()));
+        self::assertCount(1, self::$punto->getOperaciones());
         self::$punto->removeOperacion(self::$operacion);
-        self::assertSame(0, count(self::$punto->getOperaciones()));
+        self::assertCount(0, self::$punto->getOperaciones());
     }
 
 

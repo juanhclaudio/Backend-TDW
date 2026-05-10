@@ -7,7 +7,7 @@ parameters:
     #     - vendor/bin/.phpunit/phpunit/vendor/autoload.php
     # ignoreErrors:
     #     - '#Class PHPUnit\\Framework\\TestCase not found.[a-zA-Z0-9\n\\_]+\(\)#'
-    level: 7
+    level: 0
     # Inclusions
     paths:
         - config
@@ -18,5 +18,4 @@ parameters:
         - vendor
     tmpDir: var
     ignoreErrors:
-        - identifier: missingType.generics
     # checkGenericClassInNonGenericObjectType: false

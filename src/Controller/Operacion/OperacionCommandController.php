@@ -29,13 +29,12 @@ class OperacionCommandController
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
-        $data = $request->getParsedBody();
-
+        $data = (array) ($request->getParsedBody() ?? []);
         
         $operador = $this->entityManager->getRepository(Operador::class)->find($data['operadorId'] ?? 0);
         $punto = $this->entityManager->getRepository(Punto::class)->find($data['puntoId'] ?? 0);
 
-        if (!$operador || !$punto) {
+        if (null === $operador || null === $punto) {
             return Error::createResponse($response, StatusCode::STATUS_BAD_REQUEST);
         }
 
@@ -80,7 +79,7 @@ class OperacionCommandController
         }
 
         $operacion = $this->entityManager->getRepository(Operacion::class)->find($args['operationId']);
-        if (!$operacion) {
+        if (null === $operacion) {
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 
@@ -90,7 +89,7 @@ class OperacionCommandController
             return Error::createResponse($response, StatusCode::STATUS_PRECONDITION_REQUIRED);
         }
 
-        $data = $request->getParsedBody();
+        $data = (array) ($request->getParsedBody() ?? []);
 
         try {
             
@@ -114,11 +113,11 @@ class OperacionCommandController
             
             if (isset($data['operadorId'])) {
                 $newOp = $this->entityManager->getRepository(Operador::class)->find($data['operadorId']);
-                if ($newOp) $operacion->setOperador($newOp);
+                if (null !== $newOp) $operacion->setOperador($newOp);
             }
             if (isset($data['puntoId'])) {
                 $newPt = $this->entityManager->getRepository(Punto::class)->find($data['puntoId']);
-                if ($newPt) $operacion->setPunto($newPt);
+                if (null !== $newPt) $operacion->setPunto($newPt);
             }
 
             $this->entityManager->flush();
@@ -137,7 +136,7 @@ class OperacionCommandController
         }
 
         $operacion = $this->entityManager->getRepository(Operacion::class)->find($args['operationId']);
-        if (!$operacion) {
+        if (null === $operacion) {
             return Error::createResponse($response, StatusCode::STATUS_NOT_FOUND);
         }
 

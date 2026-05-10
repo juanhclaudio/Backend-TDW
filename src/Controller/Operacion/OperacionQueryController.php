@@ -80,7 +80,7 @@ class OperacionQueryController
         $criteria = new Criteria();
         
         // Ordenación: permite id (operacionId), codigo, horaProgramada
-        $order = (isset($params['order']) && in_array($params['order'], ['operacionId', 'codigo', 'horaProgramada'])) 
+        $order = (isset($params['order']) && in_array($params['order'], ['operacionId', 'codigo', 'horaProgramada'], true)) 
                  ? $params['order'] : 'operacionId';
         $ordering = (isset($params['ordering']) && $params['ordering'] === 'DESC') ? 'DESC' : 'ASC';
         $criteria->orderBy([$order => $ordering]);

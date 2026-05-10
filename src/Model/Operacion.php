@@ -52,11 +52,11 @@ class Operacion implements \Stringable, \JsonSerializable
 
     #[ORM\ManyToOne(targetEntity: Operador::class, inversedBy: 'operaciones')]
     #[ORM\JoinColumn(name: 'operador_id', referencedColumnName: 'id')]
-    protected Operador $operadorId;
+    protected ?Operador $operadorId;
 
     #[ORM\ManyToOne(targetEntity: Punto::class, inversedBy: 'operaciones')]
     #[ORM\JoinColumn(name: 'punto_id', referencedColumnName: 'id')]
-    protected Punto $puntoId;
+    protected ?Punto $puntoId;
 
     /**
      * @param TipoOperacion $tipo

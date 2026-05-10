@@ -84,11 +84,11 @@ class BaseTestCase extends TestCase
             $environment
         );
 
-        if (empty($requestHeaders['Content-Type']) || $requestHeaders['Content-Type'] === 'application/x-www-form-urlencoded') {
+        if ($requestHeaders['Content-Type'] === [] || $requestHeaders['Content-Type'] === 'application/x-www-form-urlencoded') {
             $request = $request->withParsedBody((array) $requestData);
         } elseif ($requestHeaders['Content-Type'] === 'application/json') {
             $stream = new StreamFactory();
-            !is_array($requestData) ?: $requestData = (string) json_encode($requestData, JSON_PARTIAL_OUTPUT_ON_ERROR);
+            !is_array($requestData) ?? $requestData = (string) json_encode($requestData, JSON_PARTIAL_OUTPUT_ON_ERROR);
             $stream = $stream->createStream((string) $requestData);
             $request = $request->withBody($stream);
         }
